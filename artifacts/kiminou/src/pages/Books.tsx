@@ -41,7 +41,7 @@ export function buyTargets(links: BuyLinks): { label: string; href: string }[] {
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[11px] md:text-xs font-semibold uppercase tracking-[0.32em] text-[#8a6d2f]">
+    <p className="text-[11px] md:text-xs font-semibold uppercase tracking-[0.32em] text-(--kk-brass)">
       {children}
     </p>
   );
@@ -60,8 +60,8 @@ function BuyButtons({ links, dark = false }: { links: BuyLinks; dark?: boolean }
           rel="noopener noreferrer"
           className={
             dark
-              ? "inline-flex items-center rounded-full bg-[#101400] px-6 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-[#f2efe6] transition-colors hover:bg-[#2a2e18] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#101400]"
-              : "inline-flex items-center rounded-full border border-[#101400]/25 px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.14em] text-[#101400] transition-colors hover:border-[#101400] hover:bg-[#101400] hover:text-[#f2efe6] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#101400]"
+              ? "inline-flex items-center rounded-full bg-(--kk-ink) px-6 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-(--kk-paper) transition-colors hover:bg-(--kk-ink-soft) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--kk-ink)"
+              : "inline-flex items-center rounded-full border border-(--kk-ink)/25 px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.14em] text-(--kk-ink) transition-colors hover:border-(--kk-ink) hover:bg-(--kk-ink) hover:text-(--kk-paper) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--kk-ink)"
           }
         >
           {t.label}
@@ -76,7 +76,7 @@ function BookCard({ book }: { book: Book }) {
     <article className="group flex flex-col">
       <Link
         href={`/books/${book.id}`}
-        className="block overflow-hidden rounded-sm bg-[#e7e1d2] shadow-[0_2px_10px_rgba(16,20,0,0.08)] transition-shadow duration-300 group-hover:shadow-[0_14px_36px_rgba(16,20,0,0.18)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#101400]"
+        className="block overflow-hidden rounded-sm bg-(--kk-card) shadow-[0_2px_10px_rgba(16,20,0,0.08)] transition-shadow duration-300 group-hover:shadow-[0_14px_36px_rgba(16,20,0,0.18)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--kk-ink)"
         aria-label={`${book.title} — details`}
       >
         <img
@@ -87,18 +87,18 @@ function BookCard({ book }: { book: Book }) {
         />
       </Link>
       <div className="flex flex-1 flex-col pt-5">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#101400]/45">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-(--kk-ink)/45">
           {book.year}
         </p>
         <h3 className="font-serif text-[1.65rem] leading-tight mt-2">
           <Link
             href={`/books/${book.id}`}
-            className="transition-colors hover:text-[#8a6d2f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#101400]"
+            className="transition-colors hover:text-(--kk-brass) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--kk-ink)"
           >
             {book.title}
           </Link>
         </h3>
-        <p className="mt-2 text-[15px] leading-relaxed text-[#101400]/65 line-clamp-3">
+        <p className="mt-2 text-[15px] leading-relaxed text-(--kk-ink)/65 line-clamp-3">
           {book.description}
         </p>
         <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1">
@@ -108,7 +108,7 @@ function BookCard({ book }: { book: Book }) {
               href={t.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#101400]/60 underline decoration-[#101400]/25 underline-offset-4 transition-colors hover:text-[#101400] hover:decoration-[#101400] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#101400]"
+              className="text-[12px] font-semibold uppercase tracking-[0.16em] text-(--kk-ink)/60 underline decoration-(--kk-ink)/25 underline-offset-4 transition-colors hover:text-(--kk-ink) hover:decoration-(--kk-ink) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--kk-ink)"
             >
               {t.label}
             </a>
@@ -144,7 +144,26 @@ export default function Books() {
   const span = `${Math.min(...years)}–${Math.max(...years)}`;
 
   return (
-    <main className="bg-[#f2efe6] text-[#101400]">
+    <main className="bg-(--kk-paper) text-(--kk-ink)">
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Books by Kiminou Knox",
+          itemListElement: BOOKS.map((b, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            item: {
+              "@type": "Book",
+              name: b.title,
+              author: { "@type": "Person", name: "Kiminou Knox" },
+              isbn: b.isbn,
+              datePublished: String(b.year),
+              url: `https://www.kiminouknox.com/books/${b.id}`,
+            },
+          })),
+        })}
+      </script>
       {/* ——— Page hero ——— */}
       <section className="pt-32 md:pt-44 pb-14 md:pb-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -152,26 +171,26 @@ export default function Books() {
           <h1 className="font-serif text-[clamp(2.8rem,6vw,4.8rem)] leading-[1.02] mt-5 max-w-3xl">
             Ten books. One voice.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg md:text-xl leading-relaxed text-[#101400]/70">
+          <p className="mt-6 max-w-2xl text-lg md:text-xl leading-relaxed text-(--kk-ink)/70">
             Poetry, children's stories, and confessions in verse — written between
             the court and the page, each one a letter that couldn't be delivered
             any other way.
           </p>
-          <dl className="mt-10 flex flex-wrap gap-x-12 gap-y-6 border-t border-[#101400]/15 pt-8">
+          <dl className="mt-10 flex flex-wrap gap-x-12 gap-y-6 border-t border-(--kk-ink)/15 pt-8">
             <div>
-              <dt className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#101400]/45">
+              <dt className="text-[11px] font-semibold uppercase tracking-[0.24em] text-(--kk-ink)/45">
                 Published works
               </dt>
               <dd className="font-serif text-4xl mt-2">{BOOKS.length}</dd>
             </div>
             <div>
-              <dt className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#101400]/45">
+              <dt className="text-[11px] font-semibold uppercase tracking-[0.24em] text-(--kk-ink)/45">
                 Years
               </dt>
               <dd className="font-serif text-4xl mt-2">{span}</dd>
             </div>
             <div>
-              <dt className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#101400]/45">
+              <dt className="text-[11px] font-semibold uppercase tracking-[0.24em] text-(--kk-ink)/45">
                 Shelf
               </dt>
               <dd className="font-serif text-4xl mt-2">Poetry &amp; Story</dd>
@@ -181,7 +200,7 @@ export default function Books() {
       </section>
 
       {/* ——— Featured ——— */}
-      <section className="bg-[#101400] text-[#f2efe6]">
+      <section className="bg-(--kk-ink) text-(--kk-paper)">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 md:py-24 grid gap-12 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-16 items-center">
           <div className="max-w-sm mx-auto md:mx-0 w-full">
             <img
@@ -191,21 +210,21 @@ export default function Books() {
             />
           </div>
           <div>
-            <p className="text-[11px] md:text-xs font-semibold uppercase tracking-[0.32em] text-[#d8b45a]">
+            <p className="text-[11px] md:text-xs font-semibold uppercase tracking-[0.32em] text-(--kk-gold)">
               Featured
             </p>
             <h2 className="font-serif text-[clamp(2.2rem,4.5vw,3.6rem)] leading-[1.05] mt-4">
               {featured.title}
             </h2>
             {featured.subtitle && (
-              <p className="mt-3 text-lg italic text-[#f2efe6]/70 font-serif">
+              <p className="mt-3 text-lg italic text-(--kk-paper)/70 font-serif">
                 {featured.subtitle}
               </p>
             )}
-            <p className="mt-6 text-lg leading-relaxed text-[#f2efe6]/80 max-w-xl">
+            <p className="mt-6 text-lg leading-relaxed text-(--kk-paper)/80 max-w-xl">
               {featured.description}
             </p>
-            <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-[13px] uppercase tracking-[0.18em] text-[#f2efe6]/55">
+            <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-[13px] uppercase tracking-[0.18em] text-(--kk-paper)/55">
               <span>{featured.year}</span>
               <span>ISBN {featured.isbn}</span>
               <span>{featured.themes.join(" · ")}</span>
@@ -217,14 +236,14 @@ export default function Books() {
                   href={featured.pdf}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[13px] font-semibold uppercase tracking-[0.16em] text-[#f2efe6]/70 underline decoration-[#f2efe6]/30 underline-offset-4 transition-colors hover:text-[#f2efe6] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f2efe6]"
+                  className="text-[13px] font-semibold uppercase tracking-[0.16em] text-(--kk-paper)/70 underline decoration-(--kk-paper)/30 underline-offset-4 transition-colors hover:text-(--kk-paper) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--kk-paper)"
                 >
                   Read a sample
                 </a>
               )}
               <Link
                 href={`/books/${featured.id}`}
-                className="text-[13px] font-semibold uppercase tracking-[0.16em] text-[#d8b45a] underline decoration-[#d8b45a]/40 underline-offset-4 transition-colors hover:text-[#f2efe6] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f2efe6]"
+                className="text-[13px] font-semibold uppercase tracking-[0.16em] text-(--kk-gold) underline decoration-(--kk-gold)/40 underline-offset-4 transition-colors hover:text-(--kk-paper) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--kk-paper)"
               >
                 About this book
               </Link>
@@ -254,10 +273,10 @@ export default function Books() {
                   type="button"
                   onClick={() => setTheme(t)}
                   aria-pressed={theme === t}
-                  className={`rounded-full px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#101400] ${
+                  className={`rounded-full px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--kk-ink) ${
                     theme === t
-                      ? "bg-[#101400] text-[#f2efe6]"
-                      : "border border-[#101400]/20 text-[#101400]/60 hover:border-[#101400]/60 hover:text-[#101400]"
+                      ? "bg-(--kk-ink) text-(--kk-paper)"
+                      : "border border-(--kk-ink)/20 text-(--kk-ink)/60 hover:border-(--kk-ink)/60 hover:text-(--kk-ink)"
                   }`}
                 >
                   {t}
@@ -273,7 +292,7 @@ export default function Books() {
           </div>
 
           {filtered.length === 0 && (
-            <p className="mt-12 text-lg text-[#101400]/60">
+            <p className="mt-12 text-lg text-(--kk-ink)/60">
               No titles under this theme yet.
             </p>
           )}
@@ -281,14 +300,14 @@ export default function Books() {
       </section>
 
       {/* ——— Closing strip ——— */}
-      <section className="border-t border-[#101400]/15">
+      <section className="border-t border-(--kk-ink)/15">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-14 md:py-16 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <p className="font-serif text-2xl md:text-3xl italic text-[#101400]/80 max-w-xl">
+          <p className="font-serif text-2xl md:text-3xl italic text-(--kk-ink)/80 max-w-xl">
             &ldquo;Every book is a letter I couldn&rsquo;t deliver any other way.&rdquo;
           </p>
           <Link
             href="/contact"
-            className="inline-flex shrink-0 items-center rounded-full bg-[#101400] px-7 py-3.5 text-[13px] font-semibold uppercase tracking-[0.16em] text-[#f2efe6] transition-colors hover:bg-[#2a2e18] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#101400]"
+            className="inline-flex shrink-0 items-center rounded-full bg-(--kk-ink) px-7 py-3.5 text-[13px] font-semibold uppercase tracking-[0.16em] text-(--kk-paper) transition-colors hover:bg-(--kk-ink-soft) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--kk-ink)"
           >
             Book Kiminou to speak
           </Link>

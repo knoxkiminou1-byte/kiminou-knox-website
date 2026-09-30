@@ -29,6 +29,31 @@
   --font-sans: "Inter", sans-serif;
 }
 
+/* ——— Kiminou Knox design tokens ———
+   One layout, two skins. The business-professional site is the default.
+   The red-button pixel alter-ego re-skins these same tokens via
+   data-theme="pixel" on <html> (persisted in sessionStorage, set before
+   paint by the inline script in index.html). New code must use these
+   tokens — never hardcode the brand hex values. */
+:root {
+  --kk-paper: #f2efe6;
+  --kk-ink: #101400;
+  --kk-ink-soft: #2a2e18;
+  --kk-brass: #8a6d2f;
+  --kk-gold: #d8b45a;
+  --kk-gold-deep: #b98a00;
+  --kk-card: #e7e1d2;
+}
+[data-theme="pixel"] {
+  --kk-paper: #12121a;
+  --kk-ink: #f4f1ff;
+  --kk-ink-soft: #2b2b3d;
+  --kk-brass: #ffb800;
+  --kk-gold: #ffcf3f;
+  --kk-gold-deep: #ff9d00;
+  --kk-card: #1d1d2b;
+}
+
 [data-theme="noir"] {
   --background: hsl(0, 0%, 6%);
   --foreground: hsl(0, 0%, 92%);
@@ -966,8 +991,8 @@ html.threed-on main.min-h-screen.bg-background {
 .kk-hero {
   position: relative;
   min-height: 100svh;
-  background: #f2efe6;
-  color: #101400;
+  background: var(--kk-paper);
+  color: var(--kk-ink);
   overflow: hidden;
 }
 .kk-eyebrow {
@@ -980,7 +1005,7 @@ html.threed-on main.min-h-screen.bg-background {
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.34em;
-  color: #101400cc;
+  color: color-mix(in srgb, var(--kk-ink) 80%, transparent);
 }
 .kk-face-stage {
   position: absolute;
@@ -1012,16 +1037,16 @@ html.threed-on main.min-h-screen.bg-background {
   right: 2%;
   bottom: 2%;
   z-index: 2;
-  background: #f2efe6e6;
-  border: 1px solid #10140033;
+  background: color-mix(in srgb, var(--kk-paper) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--kk-ink) 20%, transparent);
   border-radius: 999px;
   padding: 0.45rem 0.9rem;
   font: 600 0.68rem var(--font-sans);
   letter-spacing: 0.14em;
-  color: #101400aa;
+  color: color-mix(in srgb, var(--kk-ink) 67%, transparent);
   cursor: pointer;
 }
-.kk-face-replay:hover { border-color: #b98a00; color: #101400; }
+.kk-face-replay:hover { border-color: var(--kk-gold-deep); color: var(--kk-ink); }
 .kk-hero-title {
   position: absolute;
   z-index: 3;
@@ -1032,7 +1057,7 @@ html.threed-on main.min-h-screen.bg-background {
   text-align: left;
   line-height: 0.84;
   text-transform: uppercase;
-  text-shadow: 0 2px 44px #f2efe6, 0 0 14px #f2efe6;
+  text-shadow: 0 2px 44px var(--kk-paper), 0 0 14px var(--kk-paper);
 }
 .kk-hero-line {
   display: block;
@@ -1061,8 +1086,8 @@ html.threed-on main.min-h-screen.bg-background {
   font-family: var(--font-serif);
   font-size: clamp(1.05rem, 2vw, 1.35rem);
   font-style: italic;
-  color: #101400dd;
-  text-shadow: 0 1px 18px #f2efe6, 0 0 8px #f2efe6;
+  color: color-mix(in srgb, var(--kk-ink) 87%, transparent);
+  text-shadow: 0 1px 18px var(--kk-paper), 0 0 8px var(--kk-paper);
 }
 @media (max-width: 900px) {
   .kk-face-stage {
@@ -1078,18 +1103,18 @@ html.threed-on main.min-h-screen.bg-background {
     top: auto; bottom: 22%;
     transform: none;
     text-align: center;
-    text-shadow: 0 2px 26px #10140066, 0 0 10px #10140044;
+    text-shadow: 0 2px 26px color-mix(in srgb, var(--kk-ink) 40%, transparent), 0 0 10px color-mix(in srgb, var(--kk-ink) 27%, transparent);
   }
-  .kk-hero-line { color: #f2efe6; }
+  .kk-hero-line { color: var(--kk-paper); }
   .kk-hero-sub {
     left: 0; right: 0;
     top: auto; bottom: 12%;
     text-align: center;
     margin: 0 auto;
     padding: 0 1.5rem;
-    color: #f2efe6f2;
-    text-shadow: 0 2px 18px #101400aa;
+    color: var(--kk-paper)f2;
+    text-shadow: 0 2px 18px color-mix(in srgb, var(--kk-ink) 67%, transparent);
   }
   .kk-face-replay { top: 11rem; bottom: auto; left: clamp(1rem, 4vw, 3rem); right: auto; }
-  .kk-eyebrow { color: #101400aa; }
+  .kk-eyebrow { color: color-mix(in srgb, var(--kk-ink) 67%, transparent); }
 }

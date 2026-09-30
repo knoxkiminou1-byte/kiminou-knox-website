@@ -15,23 +15,23 @@ const links = [
  */
 export default function SiteFooter() {
   return (
-    <footer className="bg-[#101400] text-[#f2efe6]" data-testid="footer">
+    <footer className="bg-(--kk-ink) text-(--kk-paper)" data-testid="footer">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-16 md:pt-20 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-12 mb-16">
           <div>
             <p className="font-serif text-3xl md:text-4xl font-light mb-4">Kiminou Knox</p>
-            <p className="text-[#f2efe6]/60 max-w-md leading-relaxed">
+            <p className="text-(--kk-paper)/60 max-w-md leading-relaxed">
               Author of ten books. Athlete. Builder. Writing the story in real
               time — one book, one game, one project at a time.
             </p>
           </div>
           <nav aria-label="Footer">
-            <p className="text-xs uppercase tracking-[0.25em] text-[#f2efe6]/40 mb-5">Explore</p>
+            <p className="text-xs uppercase tracking-[0.25em] text-(--kk-paper)/40 mb-5">Explore</p>
             <ul className="space-y-3">
               {links.map((l) => (
                 <li key={l.href}>
                   <Link href={l.href}>
-                    <span className="text-[#f2efe6]/70 hover:text-[#f2efe6] transition-colors cursor-pointer text-sm tracking-wide">
+                    <span className="text-(--kk-paper)/70 hover:text-(--kk-paper) transition-colors cursor-pointer text-sm tracking-wide">
                       {l.label}
                     </span>
                   </Link>
@@ -40,7 +40,7 @@ export default function SiteFooter() {
             </ul>
           </nav>
           <div>
-            <p className="text-xs uppercase tracking-[0.25em] text-[#f2efe6]/40 mb-5">Follow</p>
+            <p className="text-xs uppercase tracking-[0.25em] text-(--kk-paper)/40 mb-5">Follow</p>
             <ul className="space-y-3">
               {SITE_SOCIAL_LINKS.slice(0, 7).map((s) => (
                 <li key={s.href}>
@@ -48,7 +48,7 @@ export default function SiteFooter() {
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#f2efe6]/70 hover:text-[#f2efe6] transition-colors text-sm tracking-wide"
+                    className="text-(--kk-paper)/70 hover:text-(--kk-paper) transition-colors text-sm tracking-wide"
                   >
                     {s.label}
                   </a>
@@ -57,11 +57,11 @@ export default function SiteFooter() {
             </ul>
           </div>
         </div>
-        <div className="border-t border-[#f2efe6]/10 pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <p className="text-xs tracking-[0.2em] uppercase text-[#f2efe6]/40">
+        <div className="border-t border-(--kk-paper)/10 pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <p className="text-xs tracking-[0.2em] uppercase text-(--kk-paper)/40">
             © 2026 Kiminou Knox. All rights reserved.
           </p>
-          <p className="text-xs tracking-[0.2em] uppercase text-[#f2efe6]/40">
+          <p className="text-xs tracking-[0.2em] uppercase text-(--kk-paper)/40">
             Author · Athlete · Builder
           </p>
         </div>

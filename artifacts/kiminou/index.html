@@ -7,6 +7,17 @@
     <meta name="google-site-verification" content="C9cFyZnBaKgzMpfupQtbarIgqK_8wkabNnLfbDZeRfI">
     <!-- STAGING COPY: indexing disabled during rebuild. Remove when this goes live. -->
     <meta name="robots" content="noindex, nofollow">
+    <script>
+      // Theme switch for the future red-button pixel world. Reads the saved
+      // theme before first paint so the business skin never flashes.
+      // The pixel theme is not advertised anywhere yet — business only.
+      try {
+        var t = sessionStorage.getItem("kk-theme");
+        document.documentElement.dataset.theme = t === "pixel" ? "pixel" : "business";
+      } catch (e) {
+        document.documentElement.dataset.theme = "business";
+      }
+    </script>
     <meta name="theme-color" content="#090705">
     <title>Kiminou Knox | Author, Athlete, Speaker, Podcast Host</title>
     <meta name="description" content="Official website of Kiminou Knox, Bay Area raised, New Orleans based author and poet of ten published books, host of KimYaps, Director at AAFC. Explore books, essays, sports, and booking info.">

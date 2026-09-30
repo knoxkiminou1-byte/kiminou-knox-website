@@ -34,18 +34,18 @@ function NotFound() {
     document.title = "Page not found — Kiminou Knox";
   }, []);
   return (
-    <main className="bg-[#f2efe6] text-[#101400] min-h-[70vh]">
+    <main className="bg-(--kk-paper) text-(--kk-ink) min-h-[70vh]">
       <div className="max-w-3xl mx-auto px-6 pt-40 pb-24 text-center">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#8a6d2f]">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-(--kk-brass)">
           404
         </p>
         <h1 className="font-serif text-4xl md:text-5xl mt-5">Off the map.</h1>
-        <p className="mt-4 text-lg text-[#101400]/65">
+        <p className="mt-4 text-lg text-(--kk-ink)/65">
           That page isn't part of the story. Start back at the beginning.
         </p>
         <Link
           href="/"
-          className="mt-8 inline-flex items-center rounded-full bg-[#101400] px-7 py-3.5 text-[13px] font-semibold uppercase tracking-[0.16em] text-[#f2efe6] transition-colors hover:bg-[#2a2e18] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#101400]"
+          className="mt-8 inline-flex items-center rounded-full bg-(--kk-ink) px-7 py-3.5 text-[13px] font-semibold uppercase tracking-[0.16em] text-(--kk-paper) transition-colors hover:bg-(--kk-ink-soft) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--kk-ink)"
         >
           Back home
         </Link>
@@ -56,7 +56,7 @@ function NotFound() {
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#f2efe6] text-[#101400] antialiased">
+    <div className="min-h-screen bg-(--kk-paper) text-(--kk-ink) antialiased">
       <ScrollToTop />
       <SiteHeader />
       <Switch>

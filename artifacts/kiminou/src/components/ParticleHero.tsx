@@ -419,12 +419,20 @@ canvasEl.style.display = "none";
     else boot();
     const fallback = window.setTimeout(() => { if (!booted) { booted = true; boot(); } }, 4000);
 
+    // Pause the loop when the tab is hidden (not just when scrolled away).
+    const onVis = () => {
+      if (document.hidden) { running = false; cancelAnimationFrame(raf); }
+      else if (!disposed && started) { running = true; last = performance.now(); raf = requestAnimationFrame(frame); }
+    };
+    document.addEventListener("visibilitychange", onVis);
+
     return () => {
       disposed = true;
       running = false;
       cancelAnimationFrame(raf);
       window.clearTimeout(fallback);
       window.removeEventListener("resize", onResize);
+      document.removeEventListener("visibilitychange", onVis);
       if (observer) observer.disconnect();
       if (bootHolder.ob) bootHolder.ob.disconnect();
       stageEl.removeEventListener("pointerdown", onPointerDown);
@@ -441,21 +449,25 @@ canvasEl.style.display = "none";
       <div className="kk-face-stage" ref={stageRef}>
         <canvas
           ref={canvasRef}
-          role="img"
-          aria-label="Chest-up pixel portrait of Kiminou Knox, built live from thousands of particles"
+          aria-hidden="true"
         />
         <img
           ref={stillRef}
           className="kk-face-still"
-          src="/hero/avatar-bust.png"
+          src="/hero/avatar-bust.webp"
           alt="Chest-up pixel portrait of Kiminou Knox"
+          width={492}
+          height={660}
+          fetchPriority="high"
           hidden
         />
         <noscript>
           <img
             className="kk-face-still"
-            src="/hero/avatar-bust.png"
+            src="/hero/avatar-bust.webp"
             alt="Chest-up pixel portrait of Kiminou Knox"
+            width={492}
+            height={660}
           />
         </noscript>
         <button ref={replayRef} className="kk-face-replay" type="button" hidden>
@@ -470,7 +482,7 @@ canvasEl.style.display = "none";
             <path
               d="M8 44 C 60 8, 120 8, 212 38 M 30 50 C 90 30, 150 26, 200 44"
               fill="none"
-              stroke="#B98A00"
+              style={{ stroke: "var(--kk-gold-deep)" }}
               strokeWidth="7"
               strokeLinecap="round"
             />
@@ -478,7 +490,7 @@ canvasEl.style.display = "none";
         </span>
       </h1>
       <p className="kk-hero-sub">
-        10 books. Basketball. Business. The story is still being written.
+        10 books. Basketball. Business.
       </p>
     </section>
   );

@@ -20,11 +20,11 @@ export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-[#f2efe6]/90 backdrop-blur-md border-b border-[#101400]/10">
+    <header className="fixed top-0 inset-x-0 z-50 bg-(--kk-paper)/90 backdrop-blur-md border-b border-(--kk-ink)/10">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link href="/" data-testid="logo-button">
-            <span className="font-sans text-sm md:text-base tracking-[0.3em] uppercase font-bold text-[#101400] cursor-pointer">
+            <span className="font-sans text-sm md:text-base tracking-[0.3em] uppercase font-bold text-(--kk-ink) cursor-pointer">
               Kiminou&nbsp;Knox
             </span>
           </Link>
@@ -36,7 +36,7 @@ export default function SiteHeader() {
                 <Link key={item.href} href={item.href}>
                   <span
                     className={`text-[13px] uppercase tracking-[0.18em] cursor-pointer transition-colors ${
-                      active ? "text-[#101400] font-semibold" : "text-[#101400]/55 hover:text-[#101400]"
+                      active ? "text-(--kk-ink) font-semibold" : "text-(--kk-ink)/55 hover:text-(--kk-ink)"
                     }`}
                   >
                     {item.label}
@@ -47,7 +47,7 @@ export default function SiteHeader() {
           </nav>
 
           <button
-            className="md:hidden p-1 text-[#101400]/70 hover:text-[#101400] transition-colors"
+            className="md:hidden p-1 text-(--kk-ink)/70 hover:text-(--kk-ink) transition-colors"
             onClick={() => setMenuOpen((o) => !o)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
@@ -58,13 +58,13 @@ export default function SiteHeader() {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden bg-[#f2efe6] border-t border-[#101400]/10" role="dialog" aria-label="Mobile navigation">
+        <div className="md:hidden bg-(--kk-paper) border-t border-(--kk-ink)/10" role="dialog" aria-label="Mobile navigation">
           <nav className="px-6 py-6 flex flex-col gap-5" aria-label="Mobile">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
                 <span
                   className={`block text-base uppercase tracking-[0.2em] cursor-pointer ${
-                    location === item.href ? "text-[#101400] font-semibold" : "text-[#101400]/60"
+                    location === item.href ? "text-(--kk-ink) font-semibold" : "text-(--kk-ink)/60"
                   }`}
                 >
                   {item.label}
