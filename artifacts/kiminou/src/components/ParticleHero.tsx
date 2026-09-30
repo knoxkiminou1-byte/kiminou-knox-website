@@ -14,12 +14,14 @@ export default function ParticleHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const stillRef = useRef<HTMLImageElement>(null);
   const replayRef = useRef<HTMLButtonElement>(null);
+  const skipRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const stage = stageRef.current;
     const canvas = canvasRef.current;
     const still = stillRef.current;
     const replayBtn = replayRef.current;
+    const skipBtn = skipRef.current;
     if (!stage || !canvas) return;
 
     const reduced =
@@ -72,7 +74,16 @@ export default function ParticleHero() {
     function build(src: HTMLImageElement): boolean {
       const coarse =
         (window.matchMedia && window.matchMedia("(pointer: coarse)").matches) || W < 480;
-      const SW = coarse ? 80 : 112;
+      // Adaptive particle budget: don't punish weaker phones.
+      // high-end → full portrait · mid → reduced · low → (handled by still fallback)
+      let SW = 112;
+      try {
+        const mem = (navigator as unknown as { deviceMemory?: number }).deviceMemory;
+        const cores = navigator.hardwareConcurrency || 8;
+        if ((mem && mem <= 4) || cores <= 4) SW = 80;
+        if ((mem && mem <= 2) || cores <= 2) SW = 64;
+        else if (coarse && SW > 80) SW = 80;
+      } catch { SW = coarse ? 80 : 112; }
       const SH = Math.max(1, Math.round((SW * src.height) / src.width));
       const off = document.createElement("canvas");
       off.width = SW; off.height = SH;
@@ -308,12 +319,17 @@ export default function ParticleHero() {
       e.stopPropagation();
       startIntro();
     };
+    const onSkip = (e: MouseEvent) => {
+      e.stopPropagation();
+      snapToPlay();
+    };
 
     stageEl.addEventListener("pointerdown", onPointerDown);
     stageEl.addEventListener("pointermove", onPointerMove);
     stageEl.addEventListener("pointerup", onPointerUp);
     stageEl.addEventListener("pointercancel", onPointerCancel);
     if (replayBtn) replayBtn.addEventListener("click", onReplay);
+    if (skipBtn) skipBtn.addEventListener("click", onSkip);
 
     let last = 0;
     function frame(now: number) {
@@ -334,12 +350,33 @@ export default function ParticleHero() {
           if (phaseT > 0.8) {
             phase = "play"; effect = "idle"; playT = 0;
             if (replayBtn) replayBtn.hidden = false;
+            if (skipBtn) skipBtn.hidden = true;
+            markSeen();
           }
         } else if (phase === "play") { effectT += dt; playT += dt; physics(dt); }
       } else if (phase === "play") {
         physics(dt * 0.3);
       }
       draw();
+    }
+
+    function markSeen() {
+      try { localStorage.setItem("kk-hero-seen", "1"); } catch { /* noop */ }
+    }
+    function hasSeen() {
+      try { return localStorage.getItem("kk-hero-seen") === "1"; } catch { return false; }
+    }
+
+    // Jump straight to the assembled portrait ("welcome back" for returners,
+    // or when the visitor skips the intro performance).
+    function snapToPlay() {
+      for (const p of P) { p.x = p.tx; p.y = p.ty; p.z = 0; p.vx = p.vy = p.vz = 0; }
+      rx = ry = trx = try_ = 0;
+      effect = "idle"; cycleI = 0;
+      phase = "play"; phaseT = 0; playT = 99; // 99: no auto re-wave on arrival
+      if (replayBtn) replayBtn.hidden = false;
+      if (skipBtn) skipBtn.hidden = true;
+      markSeen();
     }
 
     function startIntro() {
@@ -354,10 +391,13 @@ export default function ParticleHero() {
       }
       rx = ry = trx = try_ = 0;
       effect = "idle"; cycleI = 0;
+      // Returning visitor: first load was the "wow", this one is "welcome back".
+      if (!reduced && hasSeen()) { snapToPlay(); return; }
       phase = reduced ? "play" : "assemble";
       phaseT = 0;
       playT = reduced ? 99 : 0;
       if (replayBtn) replayBtn.hidden = true;
+      if (skipBtn) skipBtn.hidden = reduced;
       if (reduced) {
         for (const p of P) { p.x = p.tx; p.y = p.ty; p.z = 0; }
         if (replayBtn) replayBtn.hidden = false;
@@ -440,6 +480,7 @@ canvasEl.style.display = "none";
       stageEl.removeEventListener("pointerup", onPointerUp);
       stageEl.removeEventListener("pointercancel", onPointerCancel);
       if (replayBtn) replayBtn.removeEventListener("click", onReplay);
+      if (skipBtn) skipBtn.removeEventListener("click", onSkip);
     };
   }, []);
 
@@ -472,6 +513,9 @@ canvasEl.style.display = "none";
         </noscript>
         <button ref={replayRef} className="kk-face-replay" type="button" hidden>
           REPLAY
+        </button>
+        <button ref={skipRef} className="kk-face-skip" type="button" hidden>
+          SKIP INTRO
         </button>
       </div>
       <h1 className="kk-hero-title">

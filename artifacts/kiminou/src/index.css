@@ -39,7 +39,7 @@
   --kk-paper: #f2efe6;
   --kk-ink: #101400;
   --kk-ink-soft: #2a2e18;
-  --kk-brass: #8a6d2f;
+  --kk-brass: #7d6123;
   --kk-gold: #d8b45a;
   --kk-gold-deep: #b98a00;
   --kk-card: #e7e1d2;
@@ -1047,6 +1047,21 @@ html.threed-on main.min-h-screen.bg-background {
   cursor: pointer;
 }
 .kk-face-replay:hover { border-color: var(--kk-gold-deep); color: var(--kk-ink); }
+.kk-face-skip {
+  position: absolute;
+  right: 2%;
+  bottom: 2%;
+  z-index: 2;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--kk-ink) 20%, transparent);
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  font: 600 0.68rem var(--font-sans);
+  letter-spacing: 0.14em;
+  color: color-mix(in srgb, var(--kk-ink) 55%, transparent);
+  cursor: pointer;
+}
+.kk-face-skip:hover { border-color: var(--kk-ink); color: var(--kk-ink); }
 .kk-hero-title {
   position: absolute;
   z-index: 3;
@@ -1115,6 +1130,6 @@ html.threed-on main.min-h-screen.bg-background {
     color: var(--kk-paper)f2;
     text-shadow: 0 2px 18px color-mix(in srgb, var(--kk-ink) 67%, transparent);
   }
-  .kk-face-replay { top: 11rem; bottom: auto; left: clamp(1rem, 4vw, 3rem); right: auto; }
+  .kk-face-replay, .kk-face-skip { top: 11rem; bottom: auto; left: clamp(1rem, 4vw, 3rem); right: auto; }
   .kk-eyebrow { color: color-mix(in srgb, var(--kk-ink) 67%, transparent); }
 }
