@@ -7,6 +7,9 @@ const authorProfile = JSON.parse(fs.readFileSync(authorProfilePath, "utf8"));
 const canonicalBookTitles = authorProfile.canonicalBooks.map(({ title }) => title);
 
 const SITE_URL = "https://www.kiminouknox.com";
+// STAGING COPY (kiminou-knox-website rebuild canvas): the generated
+// robots.txt blocks all crawlers while the rebuild is in progress.
+// Flip back to the production version before this ever serves the live domain.
 const SITE_NAME = "Kiminou Knox";
 const SITE_DESCRIPTION = authorProfile.searchDescription;
 const SITE_IMAGE = `${SITE_URL}/og-image.png`;
@@ -783,19 +786,11 @@ ${geoLocation}${license}
 `;
 
 const robotsTxt = `User-agent: *
-Allow: /
-Disallow: /admin/
-Disallow: /splash
+Disallow: /
 
-User-agent: Googlebot
-Allow: /
-Disallow: /admin/
-
-User-agent: Googlebot-Image
-Allow: /
-
-Sitemap: ${SITE_URL}/sitemap.xml
-Sitemap: ${SITE_URL}/image-sitemap.xml
+# STAGING COPY — kiminou-knox-website rebuild canvas. Indexing disabled
+# until the rebuild is finished. Restore the production robots.txt
+# before this ever serves the live domain.
 `;
 
 const rssXml = `<?xml version="1.0" encoding="UTF-8"?>

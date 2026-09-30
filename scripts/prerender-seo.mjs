@@ -91,7 +91,7 @@ function renderHead(route) {
 
   return `    <title data-seo-static>${escapeHtml(route.title)}</title>
     <meta data-seo-static name="description" content="${escapeAttr(route.description)}">
-    <meta data-seo-static name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+    <meta data-seo-static name="robots" content="noindex, nofollow">
     <meta data-seo-static name="theme-color" content="#090705">
     ${keywords ? `<meta data-seo-static name="keywords" content="${escapeAttr(keywords)}">` : ""}
     <link data-seo-static rel="canonical" href="${escapeAttr(canonical)}">
