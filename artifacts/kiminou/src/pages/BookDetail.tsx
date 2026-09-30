@@ -45,18 +45,6 @@ export default function BookDetail() {
 
   return (
     <main className="bg-(--kk-paper) text-(--kk-ink)">
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Book",
-          name: book.title,
-          author: { "@type": "Person", name: "Kiminou Knox" },
-          isbn: book.isbn,
-          datePublished: String(book.year),
-          description: book.description,
-          url: `https://www.kiminouknox.com/books/${book.id}`,
-        })}
-      </script>
       <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-28 md:pt-36 pb-16 md:pb-24">
         <Link
           href="/books"

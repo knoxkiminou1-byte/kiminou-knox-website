@@ -145,25 +145,6 @@ export default function Books() {
 
   return (
     <main className="bg-(--kk-paper) text-(--kk-ink)">
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ItemList",
-          name: "Books by Kiminou Knox",
-          itemListElement: BOOKS.map((b, i) => ({
-            "@type": "ListItem",
-            position: i + 1,
-            item: {
-              "@type": "Book",
-              name: b.title,
-              author: { "@type": "Person", name: "Kiminou Knox" },
-              isbn: b.isbn,
-              datePublished: String(b.year),
-              url: `https://www.kiminouknox.com/books/${b.id}`,
-            },
-          })),
-        })}
-      </script>
       {/* ——— Page hero ——— */}
       <section className="pt-32 md:pt-44 pb-14 md:pb-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
