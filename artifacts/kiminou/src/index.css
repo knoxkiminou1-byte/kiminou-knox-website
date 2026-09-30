@@ -959,3 +959,137 @@ html.threed-on .bg-background.antialiased {
 html.threed-on main.min-h-screen.bg-background {
   background-color: rgba(12, 12, 14, 0.6);
 }
+
+/* ================= PARTICLE HERO (rebuild step 1) ================= */
+/* Cream-paper hero with the particle portrait, ported from the static
+   concept site. Scoped under .kk-hero so it never fights Tailwind. */
+.kk-hero {
+  position: relative;
+  min-height: 100svh;
+  background: #f2efe6;
+  color: #101400;
+  overflow: hidden;
+}
+.kk-eyebrow {
+  position: absolute;
+  z-index: 4;
+  top: 1.6rem;
+  left: clamp(1rem, 4vw, 3rem);
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.34em;
+  color: #101400cc;
+}
+.kk-face-stage {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  height: min(104svh, 1100px);
+  aspect-ratio: 492 / 660;
+  touch-action: pan-y;
+}
+.kk-face-stage canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: pointer;
+}
+.kk-face-still {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.kk-face-still[hidden] { display: none; }
+.kk-face-replay {
+  position: absolute;
+  right: 2%;
+  bottom: 2%;
+  z-index: 2;
+  background: #f2efe6e6;
+  border: 1px solid #10140033;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  font: 600 0.68rem var(--font-sans);
+  letter-spacing: 0.14em;
+  color: #101400aa;
+  cursor: pointer;
+}
+.kk-face-replay:hover { border-color: #b98a00; color: #101400; }
+.kk-hero-title {
+  position: absolute;
+  z-index: 3;
+  left: clamp(1rem, 4vw, 3rem);
+  top: 44%;
+  transform: translateY(-50%);
+  margin: 0;
+  text-align: left;
+  line-height: 0.84;
+  text-transform: uppercase;
+  text-shadow: 0 2px 44px #f2efe6, 0 0 14px #f2efe6;
+}
+.kk-hero-line {
+  display: block;
+  overflow: hidden;
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: clamp(2.8rem, 7.5vw, 6rem);
+  letter-spacing: 0.002em;
+}
+.kk-hero-knox { position: relative; display: inline-block; padding-bottom: 0.34em; margin-bottom: -0.34em; }
+.kk-hero-knox em { font-style: italic; font-weight: 900; font-size: 1.02em; }
+.kk-scribble {
+  position: absolute;
+  width: clamp(120px, 16vw, 200px);
+  left: 52%;
+  bottom: -0.32em;
+  z-index: 5;
+}
+.kk-hero-sub {
+  position: absolute;
+  z-index: 3;
+  left: clamp(1rem, 4vw, 3rem);
+  top: calc(44% + clamp(3.4rem, 9vw, 7.2rem));
+  margin: 0;
+  max-width: 34ch;
+  font-family: var(--font-serif);
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-style: italic;
+  color: #101400dd;
+  text-shadow: 0 1px 18px #f2efe6, 0 0 8px #f2efe6;
+}
+@media (max-width: 900px) {
+  .kk-face-stage {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    top: 7%;
+    bottom: auto;
+    height: 72svh;
+  }
+  .kk-hero-title {
+    left: 0; right: 0;
+    top: auto; bottom: 22%;
+    transform: none;
+    text-align: center;
+    text-shadow: 0 2px 26px #10140066, 0 0 10px #10140044;
+  }
+  .kk-hero-line { color: #f2efe6; }
+  .kk-hero-sub {
+    left: 0; right: 0;
+    top: auto; bottom: 12%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    color: #f2efe6f2;
+    text-shadow: 0 2px 18px #101400aa;
+  }
+  .kk-face-replay { top: 11rem; bottom: auto; left: clamp(1rem, 4vw, 3rem); right: auto; }
+  .kk-eyebrow { color: #101400aa; }
+}

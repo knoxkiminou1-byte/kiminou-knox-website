@@ -1,14 +1,6 @@
 User-agent: *
-Allow: /
-Disallow: /admin/
-Disallow: /splash
+Disallow: /
 
-User-agent: Googlebot
-Allow: /
-Disallow: /admin/
-
-User-agent: Googlebot-Image
-Allow: /
-
-Sitemap: https://www.kiminouknox.com/sitemap.xml
-Sitemap: https://www.kiminouknox.com/image-sitemap.xml
+# STAGING COPY — kiminou-knox-website rebuild canvas. Indexing disabled
+# until the rebuild is finished. Restore the production robots.txt
+# before this ever serves the live domain.
