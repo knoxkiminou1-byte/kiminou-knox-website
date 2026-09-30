@@ -207,10 +207,24 @@ export default function ParticleHero() {
       const wa = waving ? waveAngles() : null;
       if (wa && (wa.A !== 0 || wa.B !== 0)) poseArm(wa.A, wa.B);
       const k = 0.055, d = 0.9;
+      // finger-repel, computed once per frame while touching
+      const repelling = repel.active && phase === "play" && effect !== "explode" && effect !== "vortex";
+      const RR = H * 0.16, RF = H * 0.09;
       for (const p of P) {
+        if (repelling) {
+          const rdx = p.x - repel.x, rdy = p.y - repel.y;
+          const rdist = Math.sqrt(rdx * rdx + rdy * rdy) + 1;
+          if (rdist < RR) {
+            const f = (1 - rdist / RR) * RF;
+            p.vx += (rdx / rdist) * f;
+            p.vy += (rdy / rdist) * f;
+          }
+        }
         if (effect === "explode") {
-          p.vy += H * 0.008 * dt;
-          p.vx *= 0.95; p.vy *= 0.95; p.vz *= 0.95;
+          // FULL SEPARATION, Megamind-style: the portrait truly dissolves —
+          // particles fly far in every direction, hang scattered, then reform.
+          p.vx *= 0.985; p.vy *= 0.985; p.vz *= 0.985; // light brake: let them travel
+          p.vy += H * 0.0016 * dt; // faint gravity while scattered
         } else if (effect === "vortex") {
           const dx = p.x, dy = p.y;
           const dist = Math.sqrt(dx * dx + dy * dy) + 1;
@@ -228,7 +242,7 @@ export default function ParticleHero() {
         }
         p.x += p.vx * 60 * dt; p.y += p.vy * 60 * dt; p.z += p.vz * 60 * dt;
       }
-      if (effect === "explode" && effectT > 1.35) effect = "idle";
+      if (effect === "explode" && effectT > 2.4) effect = "idle";
       if (effect === "vortex" && effectT > 1.7) effect = "idle";
       if (effect === "wavefx" && effectT > 2.2) effect = "idle";
     }
@@ -244,23 +258,36 @@ export default function ParticleHero() {
       cycleI++;
       effect = fx; effectT = 0;
       if (fx === "explode") {
+        // full-separation launch: fast radial burst in all three axes
         for (const p of P) {
           const dist = Math.sqrt(p.x * p.x + p.y * p.y + p.z * p.z) + 1;
-          const sp = H * (0.008 + Math.random() * 0.014);
+          const sp = H * (0.022 + Math.random() * 0.034);
           p.vx = (p.x / dist) * sp;
-          p.vy = (p.y / dist) * sp - H * 0.008;
-          p.vz = (p.z / dist) * sp;
+          p.vy = (p.y / dist) * sp - H * 0.006;
+          p.vz = (p.z / dist) * sp + (Math.random() - 0.5) * H * 0.02;
         }
       }
+    }
+
+    // Finger-repel: dragging through the portrait pushes particles away live.
+    // World-space pointer (stage coords centered); active while pressed.
+    const repel = { x: 0, y: 0, active: false };
+    function repelPoint(e: PointerEvent) {
+      const r = stageEl.getBoundingClientRect();
+      repel.x = e.clientX - r.left - r.width / 2;
+      repel.y = e.clientY - r.top - r.height / 2;
     }
 
     let pdown: { x: number; y: number; t: number; moved: boolean } | null = null;
     const onPointerDown = (e: PointerEvent) => {
       pdown = { x: e.clientX, y: e.clientY, t: performance.now(), moved: false };
+      repelPoint(e);
+      repel.active = true;
       try { stageEl.setPointerCapture(e.pointerId); } catch { /* noop */ }
     };
     const onPointerMove = (e: PointerEvent) => {
       if (!pdown) return;
+      repelPoint(e);
       const dx = e.clientX - pdown.x, dy = e.clientY - pdown.y;
       if (Math.abs(dx) + Math.abs(dy) > 8) pdown.moved = true;
       if (pdown.moved && phase === "play") {
@@ -274,8 +301,9 @@ export default function ParticleHero() {
       const quick = performance.now() - pdown.t < 350;
       if (!pdown.moved && quick) trigger();
       pdown = null;
+      repel.active = false;
     };
-    const onPointerCancel = () => { pdown = null; };
+    const onPointerCancel = () => { pdown = null; repel.active = false; };
     const onReplay = (e: MouseEvent) => {
       e.stopPropagation();
       startIntro();
