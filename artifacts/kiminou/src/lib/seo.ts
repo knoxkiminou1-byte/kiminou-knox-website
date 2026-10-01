@@ -118,7 +118,7 @@ export function personSchema() {
           "Podcasting",
           "Mental health advocacy",
         ],
-        award: "Miles Hall Foundation Youth Summit Top Essay Finalist (2025)",
+        award: "Top Essay Winner — Miles Hall Foundation Breaking Barriers Youth Summit (February 2025)",
         sameAs: SITE_SAME_AS,
       },
       {

@@ -167,7 +167,7 @@ export default function SplitNarrative() {
               {[
                 [`${PUBLISHED_BOOK_COUNT} Books`, "published since 2020"],
                 ["Faith · Love · Identity", "recurring themes"],
-                ["Top Essay Finalist", "2025 Miles Hall Youth Summit"],
+                ["Top Essay Winner", "2025 Miles Hall Youth Summit"],
                 ["The Tee Shirt Teens", "founder & director"],
               ].map(([stat, label]) => (
                 <div key={stat} className="flex items-baseline gap-3">

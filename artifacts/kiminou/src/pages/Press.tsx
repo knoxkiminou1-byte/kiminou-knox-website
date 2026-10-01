@@ -1,5 +1,6 @@
 import { ArrowUpRight, Download } from "lucide-react";
 import { PageHero, Section, CtaBand } from "@/components/Page";
+import Seo from "@/components/Seo";
 
 /**
  * /press — for media, schools, and collaborators.
@@ -7,7 +8,7 @@ import { PageHero, Section, CtaBand } from "@/components/Page";
  */
 
 const shortBio =
-  "Kiminou Knox is a Bay Area raised, New Orleans based author and poet with ten published books. He writes across poetry, faith, identity, love, family, imagination, and youth storytelling, and is the creator of the Black Boy Lie universe. He was a top essay finalist at the 2025 Miles Hall Foundation Youth Summit.";
+  "Kiminou Knox is a Bay Area raised, New Orleans based author and poet with ten published books. He writes across poetry, faith, identity, love, family, imagination, and youth storytelling, and is the creator of the Black Boy Lie universe. His essay was named the top essay at the Miles Hall Foundation's Breaking Barriers Youth Summit in February 2025.";
 
 const facts = [
   { label: "Published books", value: "10" },
@@ -20,9 +21,9 @@ const recognition = [
   {
     date: "2025",
     source: "Miles Hall Foundation",
-    headline: "Youth Summit — Top Essay Finalist",
+    headline: "Breaking Barriers Youth Summit — Top Essay Winner",
     detail:
-      "Top essay finalist recognition for youth advocacy and mental health, addressing community issues through personal narrative and lived experience.",
+      "His essay was named the top essay at the Miles Hall Foundation's February 2025 Breaking Barriers Youth Summit — writing on youth advocacy, mental health, and Black brotherhood through personal narrative and lived experience.",
     link: "https://www.themileshallfoundation.org/post/youth-summit-essay-finalist",
   },
 ];
@@ -63,7 +64,14 @@ const linkGroups = [
 
 export default function Press() {
   return (
-    <main className="bg-(--kk-paper) text-(--kk-ink)">
+    <>
+      <Seo
+        title="Press & Recognition - Kiminou Knox"
+        description="Press, recognition, biography, official links, and media resources for Kiminou Knox."
+        path="/press"
+        image="/photos/kiminou-knox/kiminou-knox-official-author-headshot-2026.jpg"
+      />
+      <main className="bg-(--kk-paper) text-(--kk-ink)">
       <PageHero
         eyebrow="Press & Recognition"
         title={
@@ -168,5 +176,6 @@ export default function Press() {
         label="Contact for press"
       />
     </main>
+    </>
   );
 }

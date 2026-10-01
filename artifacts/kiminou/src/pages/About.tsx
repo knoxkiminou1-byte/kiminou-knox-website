@@ -124,7 +124,7 @@ export default function About() {
               </p>
 
               <p data-testid="about-stats">
-                I am the author of ten books and a 2025 Miles Hall Foundation Youth Summit Top Essay Finalist. I scored 1380 on the SAT while maintaining excellence in both athletics and creative writing.
+                I am the author of ten books and the Top Essay Winner at the 2025 Miles Hall Foundation Breaking Barriers Youth Summit. I scored 1380 on the SAT while maintaining excellence in both athletics and creative writing.
               </p>
 
               <p data-testid="about-family">

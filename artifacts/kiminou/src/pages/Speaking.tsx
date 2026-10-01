@@ -1,33 +1,34 @@
 import { Link } from "wouter";
 import { Headphones, ArrowUpRight } from "lucide-react";
 import { PageHero, Section, CtaBand } from "@/components/Page";
+import Seo from "@/components/Seo";
 
 /**
  * /speaking — the business page. Real talks, real podcast, booking CTA.
  * No FX, no fake players: the audio below is the actual episode file.
  */
 
-const talks = [
+export const talks = [
   {
     num: "01",
     title: "Discipline and Faith in Daily Practice",
     body: "A practical talk on building habits that hold up under real pressure. It connects athletics, writing, structure, and spiritual grounding without turning discipline into performance.",
     tags: ["Schools", "Teams", "Faith"],
-    quote: "Show up. Do the work. Leave every space better than you found it.",
+    tagline: "Show up. Do the work. Leave every space better than you found it.",
   },
   {
     num: "02",
     title: "Black Boy Voice and the Cost of Silence",
     body: "A conversation about identity, pressure, tenderness, and the language many young men are never given. The focus is honesty, not slogans.",
     tags: ["Youth", "Schools", "Community"],
-    quote: "The most dangerous thing you can do is stay silent when you have something real to say.",
+    tagline: "The most dangerous thing you can do is stay silent when you have something real to say.",
   },
   {
     num: "03",
     title: "Building Creative Work That Lasts",
     body: "A grounded session for young creators on developing a practice, finishing projects, sharing work, and keeping integrity in a fast-moving digital world.",
     tags: ["Youth", "Community", "Schools"],
-    quote: "Prepare seriously. Stay close to the people you serve. Finish what you start.",
+    tagline: "Prepare seriously. Stay close to the people you serve. Finish what you start.",
   },
 ];
 
@@ -59,20 +60,27 @@ const podcastLinks = [
 
 const episodes = [
   {
-    title: "Kiminou 09 — Kiminou's Studio",
-    note: "Full episode · 35 min",
+    title: "Studio Session",
+    note: "Full episode · 35 min · KimYaps archive",
     src: "/audio/kimyaps-kiminou-09-studio.m4a",
   },
   {
-    title: "Magic Episode 01",
-    note: "Studio cut · 32 min",
+    title: "Studio Cut",
+    note: "Full episode · 32 min · KimYaps archive",
     src: "/audio/kimyaps-magic-episode-01.m4a",
   },
 ];
 
 export default function Speaking() {
   return (
-    <main className="bg-(--kk-paper) text-(--kk-ink)">
+    <>
+      <Seo
+        title="Speaking & KimYaps Podcast - Kiminou Knox"
+        description="Book Kiminou Knox for talks on discipline, Black boy voice, faith, youth leadership, writing, athletics, and creative work, or tune into KimYaps podcast episodes."
+        path="/speaking"
+        image="/photos/kiminou-knox/kiminou-knox-official-author-headshot-2026.jpg"
+      />
+      <main className="bg-(--kk-paper) text-(--kk-ink)">
       <PageHero
         eyebrow="Speaking & Voice"
         title={
@@ -107,9 +115,12 @@ export default function Speaking() {
                     </span>
                   ))}
                 </div>
-                <blockquote className="mt-6 border-l-2 border-(--kk-brass) pl-5 font-serif italic text-xl text-(--kk-ink)/80 max-w-xl">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
+                <p className="mt-6 border-l-2 border-(--kk-brass) pl-5 text-lg text-(--kk-ink)/75 max-w-xl">
+                  <span className="block text-[11px] font-semibold uppercase tracking-[0.22em] text-(--kk-ink)/50 not-italic mb-1.5">
+                    The takeaway
+                  </span>
+                  <span className="font-serif italic text-xl text-(--kk-ink)/85">{t.tagline}</span>
+                </p>
               </div>
             </li>
           ))}
@@ -176,5 +187,6 @@ export default function Speaking() {
         label="Start a booking inquiry"
       />
     </main>
+    </>
   );
 }

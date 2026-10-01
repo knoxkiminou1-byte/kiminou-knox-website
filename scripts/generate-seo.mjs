@@ -365,6 +365,21 @@ const baseRouteMeta = [
     schemaType: "ProfilePage",
   },
   {
+    loc: "/work",
+    title: "Work — Kiminou Knox",
+    description:
+      "Selected builder work by Kiminou Knox: client websites and the AAFC engine — every project live, nothing conceptual.",
+    image: KIMINOU_PHOTOS.officialHeadshot.loc,
+    keywords: ["Kiminou Knox work", "Kiminou Knox websites", "AAFC", "web design"],
+    sections: [
+      {
+        heading: "Work",
+        text: "Client websites and the AAFC engine — every project live and visitable.",
+      },
+    ],
+    schemaType: "WebPage",
+  },
+  {
     loc: "/legacy",
     title: "Legacy Timeline - Kiminou Knox",
     description:

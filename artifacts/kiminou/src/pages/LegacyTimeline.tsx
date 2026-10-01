@@ -59,7 +59,7 @@ const MILESTONES: Milestone[] = [
   {
     date: "February 2025",
     pillar: "Community",
-    title: "Miles Hall Foundation Youth Summit — Top Essay Finalist",
+    title: "Miles Hall Foundation Youth Summit — Top Essay Winner",
     detail: "Recognized for an essay on youth advocacy and mental health, addressing community issues through personal narrative.",
     link: { label: "See the announcement", href: "https://www.themileshallfoundation.org/post/youth-summit-essay-finalist" },
   },

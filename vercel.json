@@ -83,11 +83,5 @@
       "destination": "/blog/eight-books-before-twenty-why-i-couldnt-stop",
       "permanent": true
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/((?!api/.*|.*\\..*).*)",
-      "destination": "/index.html"
-    }
   ]
 }

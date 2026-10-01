@@ -6,6 +6,7 @@ const navItems = [
   { href: "/books", label: "Books" },
   { href: "/sports", label: "Athletics" },
   { href: "/speaking", label: "Voice" },
+  { href: "/work", label: "Work" },
   { href: "/author", label: "Bio" },
   { href: "/press", label: "Press" },
   { href: "/contact", label: "Contact" },

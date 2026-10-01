@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-01T00:29:12.261Z",
+  "generatedAt": "2026-10-01T00:41:42.997Z",
   "site": {
     "name": "Kiminou Knox",
     "url": "https://www.kiminouknox.com",
@@ -203,6 +203,52 @@
             "@type": "ImageObject",
             "url": "https://www.kiminouknox.com/photos/kiminou-knox/kiminou-knox-official-author-headshot-2026.jpg",
             "caption": "Author profile for Kiminou Knox, a young Bay Area writer with published books across poetry, faith, identity, love, and voice."
+          },
+          "isPartOf": {
+            "@id": "https://www.kiminouknox.com/#website"
+          },
+          "about": {
+            "@id": "https://www.kiminouknox.com/#person"
+          },
+          "inLanguage": "en-US",
+          "dateModified": "2026-10-01"
+        }
+      ]
+    },
+    {
+      "loc": "/work",
+      "title": "Work — Kiminou Knox",
+      "description": "Selected builder work by Kiminou Knox: client websites and the AAFC engine — every project live, nothing conceptual.",
+      "image": "https://www.kiminouknox.com/photos/kiminou-knox/kiminou-knox-official-author-headshot-2026.jpg",
+      "keywords": [
+        "Kiminou Knox work",
+        "Kiminou Knox websites",
+        "AAFC",
+        "web design"
+      ],
+      "sections": [
+        {
+          "heading": "Work",
+          "text": "Client websites and the AAFC engine — every project live and visitable."
+        }
+      ],
+      "schemaType": "WebPage",
+      "url": "https://www.kiminouknox.com/work",
+      "lastmod": "2026-10-01",
+      "schemas": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "@id": "https://www.kiminouknox.com/work#webpage",
+          "url": "https://www.kiminouknox.com/work",
+          "name": "Work — Kiminou Knox",
+          "description": "Selected builder work by Kiminou Knox: client websites and the AAFC engine — every project live, nothing conceptual.",
+          "image": "https://www.kiminouknox.com/photos/kiminou-knox/kiminou-knox-official-author-headshot-2026.jpg",
+          "thumbnailUrl": "https://www.kiminouknox.com/photos/kiminou-knox/kiminou-knox-official-author-headshot-2026.jpg",
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "https://www.kiminouknox.com/photos/kiminou-knox/kiminou-knox-official-author-headshot-2026.jpg",
+            "caption": "Selected builder work by Kiminou Knox: client websites and the AAFC engine — every project live, nothing conceptual."
           },
           "isPartOf": {
             "@id": "https://www.kiminouknox.com/#website"

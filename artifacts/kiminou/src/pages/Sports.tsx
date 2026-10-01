@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { PageHero, Section, CtaBand } from "@/components/Page";
+import Seo from "@/components/Seo";
 
 /**
  * /sports — the discipline chapter, not a sports resume.
@@ -7,9 +8,9 @@ import { PageHero, Section, CtaBand } from "@/components/Page";
  */
 
 const measurables = [
-  { label: "Height", value: "6'8\"", source: "NCSA" },
-  { label: "Position", value: "F / C", source: "MaxPreps" },
-  { label: "High school", value: "Ygnacio Valley", source: "MaxPreps" },
+  { label: "Height", value: "6'8\"", source: "as listed on his NCSA recruiting profile" },
+  { label: "Position", value: "F / C", source: "via MaxPreps" },
+  { label: "High school", value: "Ygnacio Valley", source: "via MaxPreps" },
 ];
 
 const profiles = [
@@ -22,11 +23,6 @@ const profiles = [
     name: "MaxPreps",
     desc: "Public career profile and high school basketball record.",
     href: "https://www.maxpreps.com/ca/concord/ygnacio-valley-wolves/athletes/kiminou-knox/?careerid=3flsq42m4bpcc",
-  },
-  {
-    name: "Prep Hoops",
-    desc: "Player listing and recruiting profile.",
-    href: "https://prephoops.com/player/kiminou-knox/",
   },
 ];
 
@@ -50,7 +46,14 @@ const photos = [
 
 export default function Sports() {
   return (
-    <main className="bg-(--kk-paper) text-(--kk-ink)">
+    <>
+      <Seo
+        title="Sports & Athletics - Kiminou Knox"
+        description="Athletic profile for Kiminou Knox, Bay Area basketball player and multi-sport athlete with recruiting and performance links."
+        path="/sports"
+        image="/photos/kiminou-knox/kiminou-knox-basketball-jump-shot.jpg"
+      />
+      <main className="bg-(--kk-paper) text-(--kk-ink)">
       <PageHero
         eyebrow="Athletics"
         title={
@@ -128,11 +131,11 @@ export default function Sports() {
                 {m.label}
               </dt>
               <dd className="font-serif text-4xl mt-2">{m.value}</dd>
-              <dd className="mt-2 text-sm text-(--kk-paper)/50">via {m.source}</dd>
+              <dd className="mt-2 text-sm text-(--kk-paper)/50">{m.source}</dd>
             </div>
           ))}
         </dl>
-        <div className="mt-12 grid gap-6 md:grid-cols-3 max-w-5xl">
+        <div className="mt-12 grid gap-6 md:grid-cols-2 max-w-3xl">
           {profiles.map((p) => (
             <a
               key={p.name}
@@ -162,5 +165,6 @@ export default function Sports() {
         label="Book Kiminou for your team"
       />
     </main>
+    </>
   );
 }

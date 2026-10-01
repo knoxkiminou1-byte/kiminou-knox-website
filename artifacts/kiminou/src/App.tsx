@@ -9,8 +9,10 @@
 import { useEffect } from "react";
 import { Switch, Route, Link, useLocation } from "wouter";
 import ParticleHero from "./components/ParticleHero";
+import HomeSections from "./components/HomeSections";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
+import Seo from "./components/Seo";
 import Books from "./pages/Books";
 import BookDetail from "./pages/BookDetail";
 import Speaking from "./pages/Speaking";
@@ -18,6 +20,7 @@ import Press from "./pages/Press";
 import Sports from "./pages/Sports";
 import Contact from "./pages/Contact";
 import Author from "./pages/Author";
+import Work from "./pages/Work";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -28,17 +31,28 @@ function ScrollToTop() {
 }
 
 function Home() {
-  useEffect(() => {
-    document.title = "Kiminou Knox — Author · Athlete · Builder";
-  }, []);
-  return <ParticleHero />;
+  return (
+    <>
+      <Seo
+        title="Kiminou Knox | Athlete, Author, Speaker"
+        description="Official home of Kiminou Knox: author, athlete, speaker, and creative voice from the Bay Area. Explore books, essays, sports, and booking info."
+        path="/"
+        image="/photos/kiminou-knox/kiminou-knox-official-author-headshot-2026.jpg"
+      />
+      <ParticleHero />
+      <HomeSections />
+    </>
+  );
 }
 
 function NotFound() {
-  useEffect(() => {
-    document.title = "Page not found — Kiminou Knox";
-  }, []);
   return (
+    <>
+      <Seo
+        title="Page not found — Kiminou Knox"
+        description="That page isn't part of the story. Start back at the beginning with Kiminou Knox — author, athlete, speaker."
+        path="/404"
+      />
     <main className="bg-(--kk-paper) text-(--kk-ink) min-h-[70vh]">
       <div className="max-w-3xl mx-auto px-6 pt-40 pb-24 text-center">
         <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-(--kk-brass)">
@@ -56,6 +70,7 @@ function NotFound() {
         </Link>
       </div>
     </main>
+    </>
   );
 }
 
@@ -73,6 +88,7 @@ export default function App() {
         <Route path="/sports" component={Sports} />
         <Route path="/contact" component={Contact} />
         <Route path="/author" component={Author} />
+        <Route path="/work" component={Work} />
         <Route component={NotFound} />
       </Switch>
       <SiteFooter />

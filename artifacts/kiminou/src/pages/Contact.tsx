@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { PageHero, Section } from "@/components/Page";
+import Seo from "@/components/Seo";
 
 /**
  * /contact — posts to the existing /api/contact serverless handler.
@@ -59,7 +60,14 @@ export default function Contact() {
   }
 
   return (
-    <main className="bg-(--kk-paper) text-(--kk-ink)">
+    <>
+      <Seo
+        title="Contact - Kiminou Knox"
+        description="Contact Kiminou Knox for speaking, press, book, basketball, interview, school, and creative collaboration inquiries."
+        path="/contact"
+        image="/photos/kiminou-knox/kiminou-knox-official-author-headshot-2026.jpg"
+      />
+      <main className="bg-(--kk-paper) text-(--kk-ink)">
       <PageHero
         eyebrow="Contact"
         title={
@@ -208,5 +216,6 @@ export default function Contact() {
         </div>
       </Section>
     </main>
+    </>
   );
 }

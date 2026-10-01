@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { PageHero, Section, CtaBand } from "@/components/Page";
+import Seo from "@/components/Seo";
 
 /**
  * /author — the bio page. Verified facts only:
@@ -37,13 +38,20 @@ const lanes = [
 const anchors = [
   { year: "Bay Area", text: "Raised in the Bay Area, California — where the writing started and the game was built." },
   { year: "2024–2026", text: "Ten books published — poetry, children's stories, and confessions in verse." },
-  { year: "2025", text: "Top essay finalist at the Miles Hall Foundation Youth Summit, for writing on youth advocacy and mental health." },
+  { year: "2025", text: "Top essay winner at the Miles Hall Foundation's Breaking Barriers Youth Summit (February 2025), for writing on youth advocacy and mental health." },
   { year: "New Orleans", text: "Now based in New Orleans — writing, building, and speaking from the next chapter." },
 ];
 
 export default function Author() {
   return (
-    <main className="bg-(--kk-paper) text-(--kk-ink)">
+    <>
+      <Seo
+        title="Kiminou Knox | Author Profile"
+        description="Author profile for Kiminou Knox, a young Bay Area writer with published books across poetry, faith, identity, love, and voice."
+        path="/author"
+        image="/photos/kiminou-knox/kiminou-knox-official-author-headshot-2026.jpg"
+      />
+      <main className="bg-(--kk-paper) text-(--kk-ink)">
       <PageHero
         eyebrow="Bio"
         title={
@@ -76,8 +84,9 @@ export default function Author() {
               is the creator of the Black Boy Lie universe.
             </p>
             <p>
-              He was a top essay finalist at the 2025 Miles Hall Foundation
-              Youth Summit. He speaks to schools, teams, and youth programs on
+              His essay was named the top essay at the Miles Hall
+              Foundation's Breaking Barriers Youth Summit in February 2025.
+              He speaks to schools, teams, and youth programs on
               discipline, voice, and the cost of silence — and hosts KimYaps, a
               podcast about navigating pain, finding purpose, and giving grace.
             </p>
@@ -129,5 +138,6 @@ export default function Author() {
         label="Get in touch"
       />
     </main>
+    </>
   );
 }

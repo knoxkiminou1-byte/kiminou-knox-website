@@ -51,7 +51,11 @@ function stripManagedHead(head) {
 
   return head
     .split("\n")
-    .filter((line) => !managed.some((pattern) => pattern.test(line)))
+    .filter(
+      (line) =>
+        !line.includes("data-seo-static") &&
+        !managed.some((pattern) => pattern.test(line))
+    )
     .join("\n")
     .trimEnd();
 }

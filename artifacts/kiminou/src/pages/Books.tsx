@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "wouter";
 import booksData from "../content/books.json";
+import Seo from "@/components/Seo";
 
 export type BuyLinks = {
   amazon?: string | null;
@@ -122,29 +123,48 @@ function BookCard({ book }: { book: Book }) {
 export default function Books() {
   const [theme, setTheme] = useState<string>("All");
 
-  useEffect(() => {
-    document.title = "Books — Kiminou Knox";
-  }, []);
-
   const featured = useMemo(() => BOOKS.find((b) => b.featured) ?? BOOKS[0], []);
   const rest = useMemo(() => BOOKS.filter((b) => b.id !== featured.id), [featured]);
 
-  const themes = useMemo(() => {
-    const set = new Set<string>();
-    BOOKS.forEach((b) => b.themes.forEach((t) => set.add(t)));
-    return ["All", ...Array.from(set).sort()];
-  }, []);
-
-  const filtered = useMemo(
-    () => (theme === "All" ? rest : rest.filter((b) => b.themes.includes(theme))),
-    [theme, rest]
+  // Four broad shelves instead of two dozen micro-tags — a buyer can use these.
+  const themeGroups = useMemo(
+    () => [
+      { label: "Faith & Wisdom", themes: ["Faith", "Wisdom", "Heritage", "Legacy"] },
+      {
+        label: "Identity & Voice",
+        themes: ["Identity", "Black boyhood", "Masculinity", "Silence", "Reckoning", "Survival", "Resilience"],
+      },
+      {
+        label: "Love & Family",
+        themes: ["Love", "Heartbreak", "Family", "Motherhood", "Absence", "Friendship"],
+      },
+      {
+        label: "Imagination & Growth",
+        themes: ["Imagination", "Adventure", "Children", "Creativity", "Healing", "Searching", "Growth"],
+      },
+    ],
+    []
   );
+
+  const filtered = useMemo(() => {
+    if (theme === "All") return rest;
+    const group = themeGroups.find((g) => g.label === theme);
+    if (!group) return rest;
+    return rest.filter((b) => b.themes.some((t) => group.themes.includes(t)));
+  }, [theme, rest, themeGroups]);
 
   const years = BOOKS.map((b) => b.year);
   const span = `${Math.min(...years)}–${Math.max(...years)}`;
 
   return (
-    <main className="bg-(--kk-paper) text-(--kk-ink)">
+    <>
+      <Seo
+        title="Published Books - Kiminou Knox"
+        description="Explore published books by Kiminou Knox, including The Spirit of Solomon, Our Father?, Hopeless Romantic, and Poems from a Black Boy."
+        path="/books"
+        image="/kiminou-knox-book-universe-portal.png"
+      />
+      <main className="bg-(--kk-paper) text-(--kk-ink)">
       {/* ——— Page hero ——— */}
       <section className="pt-32 md:pt-44 pb-14 md:pb-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -248,7 +268,7 @@ export default function Books() {
               role="group"
               aria-label="Filter books by theme"
             >
-              {themes.map((t) => (
+              {["All", ...themeGroups.map((g) => g.label)].map((t) => (
                 <button
                   key={t}
                   type="button"
@@ -344,5 +364,6 @@ export default function Books() {
         </div>
       </section>
     </main>
+    </>
   );
 }

@@ -1,7 +1,7 @@
-import { useEffect } from "react";
 import { useRoute, Link } from "wouter";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { BOOKS, buyTargets } from "./Books";
+import Seo from "@/components/Seo";
 
 /**
  * BookDetail — clean, professional per-title page.
@@ -13,12 +13,14 @@ export default function BookDetail() {
   const idx = BOOKS.findIndex((b) => b.id === id);
   const book = idx >= 0 ? BOOKS[idx] : null;
 
-  useEffect(() => {
-    document.title = book ? `${book.title} — Kiminou Knox` : "Book not found — Kiminou Knox";
-  }, [book]);
-
   if (!book) {
     return (
+      <>
+        <Seo
+          title="Book not found — Kiminou Knox"
+          description="That title isn't on the shelf. Browse all ten books by Kiminou Knox."
+          path="/books"
+        />
       <main className="bg-(--kk-paper) text-(--kk-ink) min-h-[70vh]">
         <div className="max-w-3xl mx-auto px-6 pt-40 pb-24 text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-(--kk-brass)">
@@ -36,6 +38,7 @@ export default function BookDetail() {
           </Link>
         </div>
       </main>
+      </>
     );
   }
 
@@ -48,7 +51,15 @@ export default function BookDetail() {
       (b.themes ?? []).some((t) => (book.themes ?? []).includes(t))
   ).slice(0, 3);
 
+  const seoDescription = `${book.title} by Kiminou Knox. ${book.subtitle ?? ""} ${(book.description ?? "").slice(0, 220)}`.trim();
   return (
+    <>
+      <Seo
+        title={`${book.title} - Kiminou Knox | Poetry Collection`}
+        description={seoDescription}
+        path={`/books/${book.id}`}
+        image={book.cover}
+      />
     <main className="bg-(--kk-paper) text-(--kk-ink)">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-28 md:pt-36 pb-16 md:pb-24">
         <Link
@@ -196,5 +207,6 @@ export default function BookDetail() {
         </nav>
       </div>
     </main>
+    </>
   );
 }
