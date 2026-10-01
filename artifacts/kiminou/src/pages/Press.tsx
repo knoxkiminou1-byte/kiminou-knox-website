@@ -8,7 +8,7 @@ import Seo from "@/components/Seo";
  */
 
 const shortBio =
-  "Kiminou Knox is a Bay Area raised, New Orleans based author and poet with ten published books. He writes across poetry, faith, identity, love, family, imagination, and youth storytelling, and is the creator of the Black Boy Lie universe. His essay was named the top essay at the Miles Hall Foundation's Breaking Barriers Youth Summit in February 2025.";
+  "Kiminou Knox is a Bay Area raised author and poet with ten published books. He writes across poetry, faith, identity, love, family, imagination, and youth storytelling, and is the creator of the Black Boy Lie universe. His essay was named the top essay at the Miles Hall Foundation's Breaking Barriers Youth Summit in February 2025.";
 
 const facts = [
   { label: "Published books", value: "10" },

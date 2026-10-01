@@ -39,7 +39,7 @@ const anchors = [
   { year: "Bay Area", text: "Raised in the Bay Area, California — where the writing started and the game was built." },
   { year: "2024–2026", text: "Ten books published — poetry, children's stories, and confessions in verse." },
   { year: "2025", text: "Top essay winner at the Miles Hall Foundation's Breaking Barriers Youth Summit (February 2025), for writing on youth advocacy and mental health." },
-  { year: "New Orleans", text: "Now based in New Orleans — writing, building, and speaking from the next chapter." },
+  { year: "Next", text: "Writing, building, and speaking — the next chapter, wherever it lands." },
 ];
 
 export default function Author() {
@@ -59,7 +59,7 @@ export default function Author() {
             Kiminou <em className="italic">Knox.</em>
           </>
         }
-        lede="Bay Area raised, New Orleans based. Author of ten books, speaker, 6\u20198\u2033 forward/center, and host of the KimYaps podcast \u2014 building a body of work about discipline, identity, and voice."
+        lede="Bay Area raised. Author of ten books, speaker, 6\u20198\u2033 forward/center, and host of the KimYaps podcast \u2014 building a body of work about discipline, identity, and voice."
       />
 
       {/* ——— Portrait + bio ——— */}
@@ -78,7 +78,7 @@ export default function Author() {
           </figure>
           <div className="space-y-6 text-lg md:text-xl leading-relaxed text-(--kk-ink)/80 max-w-2xl">
             <p>
-              Kiminou Knox is a Bay Area raised, New Orleans based author and
+              Kiminou Knox is a Bay Area raised author and
               poet with ten published books. He writes across poetry, faith,
               identity, love, family, imagination, and youth storytelling, and
               is the creator of the Black Boy Lie universe.

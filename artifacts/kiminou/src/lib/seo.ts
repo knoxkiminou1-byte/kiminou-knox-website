@@ -42,7 +42,6 @@ export const SITE_SAME_AS = [
   ...SITE_SOCIAL_LINKS.map(({ href }) => href),
   "https://www.maxpreps.com/ca/concord/ygnacio-valley-wolves/athletes/kiminou-knox/?careerid=3flsq42m4bpcc",
   "https://www.ncsasports.org/mens-basketball-recruiting/california/concord/ygnacio-valley-high-school/kiminou-knox",
-  "https://prephoops.com/player/kiminou-knox/",
   SITE_WIKIDATA,
 ];
 

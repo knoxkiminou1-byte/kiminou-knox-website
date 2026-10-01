@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const SENTENCES = [
-  "Kiminou Knox is an author and poet. Bay Area raised, New Orleans based.",
+  "Kiminou Knox is an author and poet. Bay Area raised.",
   "He is the author of ten books.",
   "No ghost writers. No shortcuts.",
   "Basketball player. 6 feet, 7 inches. Multi-sport.",

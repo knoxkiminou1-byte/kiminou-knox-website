@@ -8,7 +8,7 @@ import Seo from "@/components/Seo";
  */
 
 const measurables = [
-  { label: "Height", value: "6'8\"", source: "as listed on his NCSA recruiting profile" },
+  { label: "Height", value: "6'8\"", source: "as listed on his MaxPreps bio" },
   { label: "Position", value: "F / C", source: "via MaxPreps" },
   { label: "High school", value: "Ygnacio Valley", source: "via MaxPreps" },
 ];
@@ -94,8 +94,8 @@ export default function Sports() {
               the five don't move as one.
             </p>
             <p className="font-serif italic text-xl text-(--kk-ink)/85 border-l-2 border-(--kk-brass) pl-5">
-              &ldquo;Discipline is just remembering what you want most over
-              what you want now — every single morning.&rdquo;
+              The takeaway: discipline is remembering what you want most over
+              what you want now — every single morning.
             </p>
           </div>
         </div>

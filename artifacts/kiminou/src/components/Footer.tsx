@@ -46,7 +46,7 @@ export default function Footer() {
               Author · Athlete · Speaker · Podcast Host
             </p>
             <p className="text-sm text-white/35 leading-relaxed max-w-xs">
-              Bay Area raised, New Orleans based author and poet. Ten published books. Host of KimYaps. Director at AAFC.
+              Bay Area raised author and poet. Ten published books. Host of KimYaps. Director at AAFC.
             </p>
           </motion.div>
 
