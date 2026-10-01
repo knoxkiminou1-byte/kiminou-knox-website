@@ -1047,6 +1047,12 @@ html.threed-on main.min-h-screen.bg-background {
   cursor: pointer;
 }
 .kk-face-replay:hover { border-color: var(--kk-gold-deep); color: var(--kk-ink); }
+.kk-face-replay:focus-visible {
+  outline: 2px solid var(--kk-gold-deep);
+  outline-offset: 3px;
+  border-color: var(--kk-gold-deep);
+  color: var(--kk-ink);
+}
 .kk-face-skip {
   position: absolute;
   right: 2%;
@@ -1062,6 +1068,12 @@ html.threed-on main.min-h-screen.bg-background {
   cursor: pointer;
 }
 .kk-face-skip:hover { border-color: var(--kk-ink); color: var(--kk-ink); }
+.kk-face-skip:focus-visible {
+  outline: 2px solid var(--kk-ink);
+  outline-offset: 3px;
+  border-color: var(--kk-ink);
+  color: var(--kk-ink);
+}
 .kk-hero-title {
   position: absolute;
   z-index: 3;
@@ -1104,6 +1116,21 @@ html.threed-on main.min-h-screen.bg-background {
   color: color-mix(in srgb, var(--kk-ink) 87%, transparent);
   text-shadow: 0 1px 18px var(--kk-paper), 0 0 8px var(--kk-paper);
 }
+.kk-hero-tag {
+  position: absolute;
+  z-index: 3;
+  left: clamp(1rem, 4vw, 3rem);
+  top: calc(44% + clamp(3.4rem, 9vw, 7.2rem) + clamp(1.9rem, 3.4vw, 2.6rem));
+  margin: 0;
+  max-width: 34ch;
+  font-family: var(--font-sans);
+  font-size: clamp(0.72rem, 1.3vw, 0.85rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--kk-ink) 62%, transparent);
+  text-shadow: 0 1px 18px var(--kk-paper), 0 0 8px var(--kk-paper);
+}
 @media (max-width: 900px) {
   .kk-face-stage {
     left: 50%;
@@ -1128,6 +1155,15 @@ html.threed-on main.min-h-screen.bg-background {
     margin: 0 auto;
     padding: 0 1.5rem;
     color: var(--kk-paper)f2;
+    text-shadow: 0 2px 18px color-mix(in srgb, var(--kk-ink) 67%, transparent);
+  }
+  .kk-hero-tag {
+    left: 0; right: 0;
+    top: auto; bottom: 6.5%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    color: color-mix(in srgb, var(--kk-paper) 78%, transparent);
     text-shadow: 0 2px 18px color-mix(in srgb, var(--kk-ink) 67%, transparent);
   }
   .kk-face-replay, .kk-face-skip { top: 11rem; bottom: auto; left: clamp(1rem, 4vw, 3rem); right: auto; }

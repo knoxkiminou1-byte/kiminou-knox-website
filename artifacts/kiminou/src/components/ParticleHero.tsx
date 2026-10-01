@@ -536,6 +536,9 @@ canvasEl.style.display = "none";
       <p className="kk-hero-sub">
         10 books. Basketball. Business.
       </p>
+      <p className="kk-hero-tag">
+        Creating the next chapter in public.
+      </p>
     </section>
   );
 }
