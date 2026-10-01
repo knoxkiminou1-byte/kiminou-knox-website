@@ -280,6 +280,55 @@ export default function Books() {
         </div>
       </section>
 
+      {/* ——— Writing timeline ——— */}
+      <section className="bg-(--kk-card) border-y border-(--kk-ink)/10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 md:py-24">
+          <Eyebrow>The Arc</Eyebrow>
+          <h2 className="font-serif text-[clamp(1.9rem,4vw,3rem)] leading-tight mt-4 max-w-2xl">
+            Ten books, one becoming.
+          </h2>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-(--kk-ink)/70">
+            The order they arrived in — each one written from wherever life had
+            him standing at the time.
+          </p>
+          <ol className="mt-12 relative border-l-2 border-(--kk-brass)/40 ml-2 md:ml-4 space-y-10">
+            {[...BOOKS]
+              .sort((a, b) => a.year - b.year)
+              .map((book, i) => (
+                <li key={book.id} className="relative pl-8 md:pl-12">
+                  <span
+                    aria-hidden
+                    className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-(--kk-paper) border-2 border-(--kk-brass)"
+                  />
+                  <div className="flex items-start gap-5">
+                    <Link href={`/books/${book.id}`} className="shrink-0">
+                      <img
+                        src={book.cover}
+                        alt=""
+                        className="w-14 h-[4.7rem] object-cover rounded-sm shadow-md"
+                        loading="lazy"
+                      />
+                    </Link>
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-(--kk-brass)">
+                        Book {i + 1} of {BOOKS.length} · {book.year}
+                      </p>
+                      <Link href={`/books/${book.id}`}>
+                        <span className="font-serif text-xl md:text-2xl mt-1 block cursor-pointer hover:underline underline-offset-4">
+                          {book.title}
+                        </span>
+                      </Link>
+                      <p className="mt-1 text-sm text-(--kk-ink)/60">
+                        {(book.themes ?? []).slice(0, 3).join(" · ")}
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              ))}
+          </ol>
+        </div>
+      </section>
+
       {/* ——— Closing strip ——— */}
       <section className="border-t border-(--kk-ink)/15">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-14 md:py-16 flex flex-col md:flex-row md:items-center justify-between gap-6">

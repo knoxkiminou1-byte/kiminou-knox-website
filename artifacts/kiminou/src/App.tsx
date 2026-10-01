@@ -13,6 +13,11 @@ import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 import Books from "./pages/Books";
 import BookDetail from "./pages/BookDetail";
+import Speaking from "./pages/Speaking";
+import Press from "./pages/Press";
+import Sports from "./pages/Sports";
+import Contact from "./pages/Contact";
+import Author from "./pages/Author";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -63,6 +68,11 @@ export default function App() {
         <Route path="/" component={Home} />
         <Route path="/books" component={Books} />
         <Route path="/books/:id" component={BookDetail} />
+        <Route path="/speaking" component={Speaking} />
+        <Route path="/press" component={Press} />
+        <Route path="/sports" component={Sports} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/author" component={Author} />
         <Route component={NotFound} />
       </Switch>
       <SiteFooter />

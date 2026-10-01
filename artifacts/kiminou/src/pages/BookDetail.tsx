@@ -42,6 +42,11 @@ export default function BookDetail() {
   const prev = BOOKS[(idx - 1 + BOOKS.length) % BOOKS.length];
   const next = BOOKS[(idx + 1) % BOOKS.length];
   const targets = buyTargets(book.buyLinks);
+  const related = BOOKS.filter(
+    (b) =>
+      b.id !== book.id &&
+      (b.themes ?? []).some((t) => (book.themes ?? []).includes(t))
+  ).slice(0, 3);
 
   return (
     <main className="bg-(--kk-paper) text-(--kk-ink)">
@@ -125,6 +130,39 @@ export default function BookDetail() {
             )}
           </div>
         </div>
+
+        {/* related in the archive */}
+        {related.length > 0 && (
+          <section aria-label="Related books" className="mt-16 md:mt-20">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-(--kk-brass)">
+              Also in the archive
+            </p>
+            <div className="mt-6 grid gap-6 sm:grid-cols-3">
+              {related.map((r) => (
+                <Link
+                  key={r.id}
+                  href={`/books/${r.id}`}
+                  className="group flex gap-4 items-start rounded-sm border border-(--kk-ink)/12 p-4 transition-colors hover:border-(--kk-brass)/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--kk-ink)"
+                >
+                  <img
+                    src={r.cover}
+                    alt=""
+                    className="w-12 h-16 object-cover rounded-sm shadow shrink-0"
+                    loading="lazy"
+                  />
+                  <span>
+                    <span className="block font-serif text-lg leading-snug group-hover:underline underline-offset-4">
+                      {r.title}
+                    </span>
+                    <span className="block mt-1 text-xs uppercase tracking-[0.18em] text-(--kk-ink)/50">
+                      {r.year}
+                    </span>
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* prev / next */}
         <nav
