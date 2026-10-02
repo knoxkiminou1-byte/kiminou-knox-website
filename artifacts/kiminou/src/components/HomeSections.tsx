@@ -152,6 +152,57 @@ export default function HomeSections() {
           </Link>
         </div>
       </section>
+
+      {/* ——— Current / journal / builder depth ——— */}
+      <section className="bg-(--kk-card) text-(--kk-ink) border-t border-(--kk-ink)/10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 md:py-24">
+          <Eyebrow>Go deeper</Eyebrow>
+          <h2 className="font-serif text-4xl md:text-5xl leading-tight mt-4 max-w-2xl">
+            The work has more than one front.
+          </h2>
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            <Link
+              href="/blog"
+              className="group rounded-sm border border-(--kk-ink)/12 bg-(--kk-paper) p-7 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--kk-ink)"
+            >
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-(--kk-brass)">Journal</p>
+              <h3 className="font-serif text-2xl mt-3">Essays between the books.</h3>
+              <p className="mt-3 text-(--kk-ink)/65 leading-relaxed">
+                Faith, Black boyhood, discipline, love, writing, and the court — plus recent work from Medium.
+              </p>
+              <span className="mt-6 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] group-hover:gap-3 transition-all">
+                Read the journal <ArrowRight className="w-4 h-4" aria-hidden />
+              </span>
+            </Link>
+            <Link
+              href="/now"
+              className="group rounded-sm border border-(--kk-ink)/12 bg-(--kk-paper) p-7 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--kk-ink)"
+            >
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-(--kk-brass)">Now</p>
+              <h3 className="font-serif text-2xl mt-3">What is active right now.</h3>
+              <p className="mt-3 text-(--kk-ink)/65 leading-relaxed">
+                A live snapshot of the books, podcast, speaking, builder work, and athletics that are moving.
+              </p>
+              <span className="mt-6 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] group-hover:gap-3 transition-all">
+                Open the snapshot <ArrowRight className="w-4 h-4" aria-hidden />
+              </span>
+            </Link>
+            <Link
+              href="/work"
+              className="group rounded-sm border border-(--kk-ink)/12 bg-(--kk-paper) p-7 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--kk-ink)"
+            >
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-(--kk-brass)">Builder</p>
+              <h3 className="font-serif text-2xl mt-3">Real sites. Live systems.</h3>
+              <p className="mt-3 text-(--kk-ink)/65 leading-relaxed">
+                Client websites and the AAFC engine — the technical lane behind the public creative work.
+              </p>
+              <span className="mt-6 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] group-hover:gap-3 transition-all">
+                See selected work <ArrowRight className="w-4 h-4" aria-hidden />
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
