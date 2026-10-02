@@ -22,6 +22,10 @@ import Sports from "./pages/Sports";
 import Contact from "./pages/Contact";
 import Author from "./pages/Author";
 import Work from "./pages/Work";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
+import BookUniverse from "./pages/BookUniverse";
+import Now from "./pages/Now";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -83,6 +87,7 @@ export default function App() {
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/books" component={Books} />
+        <Route path="/books/universe" component={BookUniverse} />
         <Route path="/books/:id" component={BookDetail} />
         <Route path="/speaking" component={Speaking} />
         <Route path="/press" component={Press} />
@@ -90,6 +95,9 @@ export default function App() {
         <Route path="/contact" component={Contact} />
         <Route path="/author" component={Author} />
         <Route path="/work" component={Work} />
+        <Route path="/blog" component={Blog} />
+        <Route path="/blog/:slug" component={BlogPost} />
+        <Route path="/now" component={Now} />
         <Route component={NotFound} />
       </Switch>
       <SiteFooter />
