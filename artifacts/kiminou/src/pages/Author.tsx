@@ -153,7 +153,7 @@ export default function Author() {
               {anchors.map((anchor, index) => (
                 <li key={anchor.year} className="relative pl-12 md:pl-0 md:pt-12">
                   <span
-                    className="absolute left-[14px] top-1.5 h-3 w-3 rounded-full border-2 border-(--kk-gold) bg-(--kk-ink) md:left-[calc(50%-6px)] md:top-[-1px]"
+                    className="absolute left-[14px] top-1.5 h-3 w-3 rounded-full border-2 border-(--kk-gold) bg-(--kk-ink) md:left-1/2 md:top-[-1px] md:-translate-x-1/2"
                     aria-hidden
                   />
                   <p className="font-serif text-2xl text-(--kk-gold)">{anchor.year}</p>
