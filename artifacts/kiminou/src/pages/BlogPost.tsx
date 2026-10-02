@@ -1,275 +1,183 @@
-import { Helmet } from "react-helmet-async";
-import { useParams, Link } from "wouter";
-import { ArrowLeft, Calendar, Clock, Share2, Twitter, Facebook, Linkedin } from "lucide-react";
-import { format } from "date-fns";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { breadcrumbSchema, SITE_URL } from "@/lib/seo";
+import { useState } from "react";
+import { Link, useParams } from "wouter";
+import { ArrowLeft, Link2, Linkedin, Twitter } from "lucide-react";
+import Seo from "@/components/Seo";
 import {
   blogCategories,
   findPublishedBlogPost,
   relatedPublishedBlogPosts,
 } from "@/content/blogContent";
 
-function ShareButton({ label, onClick, children }: { label: string; onClick: () => void; children: React.ReactNode }) {
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      onClick={onClick}
-      className="w-9 h-9 flex items-center justify-center border border-white/10 text-white/40 hover:border-amber-400/40 hover:text-amber-300 transition-colors duration-300"
-    >
-      {children}
-    </button>
-  );
+function formatDate(value: Date | null | undefined) {
+  if (!value) return "";
+  return new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(value);
 }
 
-function BlogPostPage() {
+export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const post = findPublishedBlogPost(slug);
-  const categories = blogCategories;
+  const [copied, setCopied] = useState(false);
 
   if (!post) {
     return (
       <>
-        <Header />
-        <div id="main-content" className="min-h-screen bg-black flex items-center justify-center px-6">
-          <Helmet>
-            <title>Keep Reading — Kiminou Knox</title>
-            <meta name="robots" content="noindex,nofollow" />
-          </Helmet>
-          <div className="text-center">
-            <p className="text-xs uppercase tracking-[0.4em] text-amber-400/40 mb-6">404</p>
-            <h1 className="font-serif text-5xl font-light text-white mb-6">This one has moved on</h1>
-            <p className="text-white/40 mb-8">The rest of the writing is still waiting for you.</p>
-            <Link href="/blog" className="inline-flex items-center gap-2 text-amber-400/60 hover:text-amber-300 transition-colors text-xs uppercase tracking-[0.3em]">
-              <ArrowLeft className="w-3 h-3" /> Explore the blog
+        <Seo
+          title="Essay not found — Kiminou Knox"
+          description="That essay is no longer on this shelf. Browse the Kiminou Knox journal."
+          path="/blog"
+        />
+        <main className="min-h-[70vh] bg-(--kk-paper) text-(--kk-ink)">
+          <div className="mx-auto max-w-3xl px-6 pb-24 pt-40 text-center">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-(--kk-brass)">Journal</p>
+            <h1 className="mt-5 font-serif text-4xl md:text-5xl">That page moved.</h1>
+            <p className="mt-4 text-lg text-(--kk-ink)/65">
+              The rest of the writing is still here.
+            </p>
+            <Link
+              href="/blog"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-(--kk-ink) px-7 py-3.5 text-[13px] font-semibold uppercase tracking-[0.16em] text-(--kk-paper)"
+            >
+              <ArrowLeft className="h-4 w-4" aria-hidden /> Back to the journal
             </Link>
           </div>
-        </div>
-        <Footer />
+        </main>
       </>
     );
   }
 
-  const category = categories.find(c => c.id === post.categoryId);
-  const otherRelatedPosts = relatedPublishedBlogPosts(post);
-  const publishedAtIso = post.publishedAt?.toISOString();
-  const updatedAtIso = post.updatedAt?.toISOString() || publishedAtIso;
+  const category = blogCategories.find((item) => item.id === post.categoryId);
+  const related = relatedPublishedBlogPosts(post);
+  const path = "/blog/" + post.slug;
+  const shareUrl = typeof window !== "undefined" ? window.location.href : "https://www.kiminouknox.com" + path;
+  const shareText = post.title + " by Kiminou Knox";
 
-  const shareUrl = typeof window !== "undefined" ? window.location.href : `${SITE_URL}/blog/${post.slug}`;
-  const shareText = `${post.title} by Kiminou Knox`;
-
-  const handleShare = (platform: string) => {
-    let url = "";
-    switch (platform) {
-      case "twitter":
-        url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
-        break;
-      case "facebook":
-        url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
-        break;
-      case "linkedin":
-        url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
-        break;
-      default:
-        navigator.clipboard.writeText(shareUrl);
-        return;
+  async function copyLink() {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      setCopied(false);
     }
-    window.open(url, "_blank", "width=600,height=400");
-  };
-
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": post.title,
-    "description": post.excerpt || post.title,
-    "url": `https://www.kiminouknox.com/blog/${post.slug}`,
-    "datePublished": publishedAtIso,
-    "dateModified": updatedAtIso,
-    "image": "https://www.kiminouknox.com/kiminou-knox-social-share.png",
-    "inLanguage": "en-US",
-    "keywords": post.tags || [],
-    "author": {
-      "@type": "Person",
-      "name": "Kiminou Knox",
-      "@id": "https://www.kiminouknox.com/#person",
-      "url": "https://www.kiminouknox.com",
-      "image": "https://www.kiminouknox.com/photos/kiminou-knox/kiminou-knox-official-author-headshot-2026.jpg"
-    },
-    "publisher": {
-      "@type": "Person",
-      "name": "Kiminou Knox",
-      "url": "https://www.kiminouknox.com",
-      "logo": { "@type": "ImageObject", "url": "https://www.kiminouknox.com/favicon-512x512.png" }
-    },
-    "mainEntityOfPage": { "@type": "WebPage", "@id": `https://www.kiminouknox.com/blog/${post.slug}` }
-  };
-  const breadcrumbs = breadcrumbSchema([
-    { name: "Home", url: SITE_URL },
-    { name: "Blog", url: `${SITE_URL}/blog` },
-    { name: post.title, url: `${SITE_URL}/blog/${post.slug}` },
-  ]);
+  }
 
   return (
     <>
-      <Helmet>
-        <title>{post.title} — Kiminou Knox</title>
-        <meta name="description" content={post.excerpt || `${post.title} — An essay by Kiminou Knox.`} />
-        <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
-        <link rel="canonical" href={`https://www.kiminouknox.com/blog/${post.slug}`} />
-        <link rel="alternate" type="application/rss+xml" title="Kiminou Knox Journal RSS" href="https://www.kiminouknox.com/rss.xml" />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={`${post.title} — Kiminou Knox`} />
-        <meta property="og:description" content={post.excerpt || post.title} />
-        <meta property="og:url" content={`https://www.kiminouknox.com/blog/${post.slug}`} />
-        <meta property="og:image" content="https://www.kiminouknox.com/kiminou-knox-social-share.png" />
-        <meta property="og:image:alt" content={`${post.title} by Kiminou Knox`} />
-        <meta property="article:author" content="Kiminou Knox" />
-        {publishedAtIso && <meta property="article:published_time" content={publishedAtIso} />}
-        {updatedAtIso && <meta property="article:modified_time" content={updatedAtIso} />}
-        {post.tags?.map((tag) => (
-          <meta key={tag} property="article:tag" content={tag} />
-        ))}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${post.title} — Kiminou Knox`} />
-        <meta name="twitter:description" content={post.excerpt || post.title} />
-        <meta name="twitter:image" content="https://www.kiminouknox.com/kiminou-knox-social-share.png" />
-        <meta name="twitter:creator" content="@KnoxKiminou" />
-        <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
-        <script type="application/ld+json">{JSON.stringify(breadcrumbs)}</script>
-      </Helmet>
-
-      <Header />
-
-      <main id="main-content" className="min-h-screen bg-black text-white">
-        <div className="pt-28 pb-0">
-          <div className="max-w-3xl mx-auto px-6 lg:px-10">
+      <Seo
+        title={post.title + " - Kiminou Knox"}
+        description={post.excerpt}
+        path={path}
+        image={post.featuredImage || "/og-image.png"}
+      />
+      <main className="bg-(--kk-paper) text-(--kk-ink)">
+        <article>
+          <header className="mx-auto max-w-4xl px-6 pb-12 pt-32 md:pb-16 md:pt-44 lg:px-10">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-white/30 hover:text-amber-400/60 transition-colors duration-300 group"
+              className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-(--kk-ink)/55 hover:text-(--kk-ink)"
             >
-              <ArrowLeft className="w-3 h-3 group-hover:-translate-x-0.5 transition-transform" />
-              All Articles
+              <ArrowLeft className="h-4 w-4" aria-hidden /> Journal
             </Link>
-          </div>
-        </div>
-
-        <article className="max-w-3xl mx-auto px-6 lg:px-10 py-16">
-          <header className="mb-12">
-            <div className="flex items-center gap-4 mb-6 flex-wrap">
-              {category && (
-                <span className="text-xs uppercase tracking-[0.3em] text-amber-400/60 border border-amber-400/20 px-3 py-1">
-                  {category.name}
-                </span>
-              )}
-              <div className="flex items-center text-xs text-white/30 gap-4 uppercase tracking-[0.15em]">
-                {post.publishedAt && (
-                  <span className="flex items-center gap-1.5">
-                    <Calendar className="w-3 h-3" />
-                    {format(post.publishedAt, "MMMM d, yyyy")}
-                  </span>
-                )}
-                <span className="flex items-center gap-1.5">
-                  <Clock className="w-3 h-3" />
-                  {post.readTime || 5} min read
-                </span>
-              </div>
-            </div>
-
-            <h1 className="font-serif text-4xl md:text-6xl font-light leading-tight text-white mb-6">
+            <p className="mt-10 text-[11px] font-semibold uppercase tracking-[0.28em] text-(--kk-brass)">
+              {category?.name ?? "Journal"} · {formatDate(post.publishedAt)}
+            </p>
+            <h1 className="mt-5 max-w-4xl font-serif text-[clamp(2.8rem,6vw,5rem)] leading-[1.02]">
               {post.title}
             </h1>
+            <p className="mt-6 max-w-2xl text-xl leading-relaxed text-(--kk-ink)/68">
+              {post.excerpt}
+            </p>
+          </header>
 
-            {post.excerpt && (
-              <p className="font-serif text-xl text-white/50 italic leading-relaxed mb-8">
-                {post.excerpt}
+          <div className="border-y border-(--kk-ink)/10 bg-(--kk-card)">
+            <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-4 px-6 py-5 lg:px-10">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-(--kk-ink)/45">
+                Share the essay
               </p>
-            )}
+              <div className="flex flex-wrap gap-2">
+                <a
+                  href={"https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(shareUrl)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-(--kk-ink)/20 hover:border-(--kk-ink)/55"
+                  aria-label="Share on X"
+                >
+                  <Twitter className="h-4 w-4" aria-hidden />
+                </a>
+                <a
+                  href={"https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(shareUrl)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-(--kk-ink)/20 hover:border-(--kk-ink)/55"
+                  aria-label="Share on LinkedIn"
+                >
+                  <Linkedin className="h-4 w-4" aria-hidden />
+                </a>
+                <button
+                  type="button"
+                  onClick={copyLink}
+                  className="inline-flex min-h-10 items-center gap-2 rounded-full border border-(--kk-ink)/20 px-4 text-[11px] font-semibold uppercase tracking-[0.16em] hover:border-(--kk-ink)/55"
+                >
+                  <Link2 className="h-4 w-4" aria-hidden />
+                  {copied ? "Copied" : "Copy link"}
+                </button>
+              </div>
+            </div>
+          </div>
 
-            {post.tags && post.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2 mb-8">
-                {post.tags.map((tag) => (
-                  <span key={tag} className="px-3 py-1 border border-white/10 text-xs text-white/35 uppercase tracking-[0.1em]">
-                    #{tag}
+          <div className="mx-auto max-w-3xl px-6 py-16 md:py-24">
+            <div className="space-y-7 font-serif text-[1.35rem] leading-[1.75] text-(--kk-ink)/82">
+              {post.content
+                .split(/\n\s*\n/)
+                .filter(Boolean)
+                .map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
+            </div>
+
+            {(post.tags ?? []).length > 0 && (
+              <div className="mt-14 flex flex-wrap gap-2 border-t border-(--kk-ink)/12 pt-7">
+                {(post.tags ?? []).map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-(--kk-ink)/15 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-(--kk-ink)/55"
+                  >
+                    {tag}
                   </span>
                 ))}
               </div>
             )}
-
-            <div className="flex items-center gap-4 mb-8">
-              <span className="text-xs uppercase tracking-[0.2em] text-white/25">Share</span>
-              <div className="flex gap-2">
-                <ShareButton label="Share on Twitter" onClick={() => handleShare("twitter")}>
-                  <Twitter className="w-4 h-4" />
-                </ShareButton>
-                <ShareButton label="Share on Facebook" onClick={() => handleShare("facebook")}>
-                  <Facebook className="w-4 h-4" />
-                </ShareButton>
-                <ShareButton label="Share on LinkedIn" onClick={() => handleShare("linkedin")}>
-                  <Linkedin className="w-4 h-4" />
-                </ShareButton>
-                <ShareButton label="Copy link" onClick={() => handleShare("copy")}>
-                  <Share2 className="w-4 h-4" />
-                </ShareButton>
-              </div>
-            </div>
-
-            <div className="w-full h-px bg-white/8" />
-          </header>
-
-          <div className="font-serif text-lg text-white/70 leading-relaxed whitespace-pre-wrap mb-16">
-            {post.content}
           </div>
+        </article>
 
-          <div className="h-px bg-white/8 mb-16" />
-
-          <div className="border border-white/8 bg-white/[0.015] p-8 mb-16">
-            <div className="flex items-start gap-6">
-              <div className="w-16 h-16 flex-shrink-0 rounded-full border border-amber-400/30 flex items-center justify-center text-amber-300 font-serif text-xl">
-                KK
-              </div>
-              <div>
-                <h3 className="font-serif text-xl text-white mb-2">Kiminou Knox</h3>
-                <p className="text-white/40 text-sm leading-relaxed mb-4">
-                  Bay Area raised, New Orleans based author and poet. Ten published books. He writes what others leave out.
-                </p>
-                <div className="flex gap-4 text-xs uppercase tracking-[0.2em]">
-                  <Link href="/author" className="text-amber-400/60 hover:text-amber-300 transition-colors">
-                    View Profile
-                  </Link>
-                  <Link href="/blog" className="text-amber-400/60 hover:text-amber-300 transition-colors">
-                    More Articles
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {otherRelatedPosts.length > 0 && (
-            <section>
-              <p className="text-xs uppercase tracking-[0.4em] text-amber-400/40 mb-6">Related Articles</p>
-              <div className="grid sm:grid-cols-3 gap-5">
-                {otherRelatedPosts.map((relatedPost) => (
-                  <Link key={relatedPost.id} href={`/blog/${relatedPost.slug}`} className="group block border border-white/8 bg-white/[0.015] hover:border-amber-400/25 hover:bg-white/[0.04] transition-all duration-300 p-5">
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-amber-400/50">
-                      {categories.find(c => c.id === relatedPost.categoryId)?.name || "Uncategorized"}
-                    </span>
-                    <h3 className="font-serif text-base text-white/85 mt-2 mb-2 leading-snug line-clamp-2 group-hover:text-amber-100 transition-colors">
-                      {relatedPost.title}
-                    </h3>
-                    <p className="text-xs text-white/35 line-clamp-2 leading-relaxed">{relatedPost.excerpt}</p>
+        {related.length > 0 && (
+          <section className="bg-(--kk-ink) text-(--kk-paper)">
+            <div className="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:px-10">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-(--kk-gold)">Keep reading</p>
+              <h2 className="mt-4 font-serif text-4xl">From the same shelf</h2>
+              <div className="mt-10 grid gap-px overflow-hidden rounded-sm bg-(--kk-paper)/12 md:grid-cols-3">
+                {related.map((item) => (
+                  <Link
+                    key={item.id}
+                    href={"/blog/" + item.slug}
+                    className="block bg-(--kk-ink) p-7 transition-colors hover:bg-(--kk-ink-soft)"
+                  >
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-(--kk-gold)">
+                      {formatDate(item.publishedAt)}
+                    </p>
+                    <h3 className="mt-4 font-serif text-2xl leading-tight">{item.title}</h3>
+                    <p className="mt-4 line-clamp-3 text-(--kk-paper)/60">{item.excerpt}</p>
                   </Link>
                 ))}
               </div>
-            </section>
-          )}
-        </article>
+            </div>
+          </section>
+        )}
       </main>
-
-      <Footer />
     </>
   );
 }
-
-export default BlogPostPage;
