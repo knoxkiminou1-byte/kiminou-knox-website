@@ -13,6 +13,7 @@ import ParticleHero from "./components/ParticleHero";
 import HomeSections from "./components/HomeSections";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
+import ProfessionalAtmosphere from "./components/ProfessionalAtmosphere";
 import Seo from "./components/Seo";
 import Books from "./pages/Books";
 import BookDetail from "./pages/BookDetail";
@@ -81,7 +82,8 @@ function NotFound() {
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-(--kk-paper) text-(--kk-ink) antialiased">
+    <div className="professional-shell min-h-screen bg-(--kk-paper) text-(--kk-ink) antialiased">
+      <ProfessionalAtmosphere />
       <ScrollToTop />
       <SiteHeader />
       <Switch>
