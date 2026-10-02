@@ -69,7 +69,7 @@ export default function BlogPost() {
     <>
       <Seo
         title={post.title + " - Kiminou Knox"}
-        description={post.excerpt}
+        description={post.excerpt ?? ""}
         path={path}
         image={post.featuredImage || "/og-image.png"}
       />
