@@ -1,6 +1,8 @@
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { Link } from "wouter";
-import { SITE_SOCIAL_LINKS } from "@/lib/seo";
 import SignatureAnimation from "@/components/SignatureAnimation";
+import { SITE_SOCIAL_LINKS } from "@/lib/seo";
 
 const links = [
   { href: "/books", label: "Books" },
@@ -15,67 +17,110 @@ const links = [
   { href: "/contact", label: "Contact" },
 ];
 
-/**
- * SiteFooter — ink-dark footer grounding the business-professional pages.
- * The animated signature is retained from the earlier site as a quiet brand detail.
- */
 export default function SiteFooter() {
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+
   return (
-    <footer className="bg-(--kk-ink) text-(--kk-paper)" data-testid="footer">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-16 md:pt-20 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-12 mb-12">
-          <div>
-            <p className="font-serif text-3xl md:text-4xl font-light mb-4">Kiminou Knox</p>
-            <p className="text-(--kk-paper)/60 max-w-md leading-relaxed">
-              Author of ten books. Athlete. Builder. Writing the story in real
-              time — one book, one game, one project at a time.
+    <footer
+      ref={ref}
+      className="relative z-10 overflow-hidden border-t border-(--kk-paper)/10 bg-[#050209] text-(--kk-paper)"
+      data-testid="footer"
+    >
+      <div className="pointer-events-none absolute -right-24 top-12 h-72 w-72 rounded-full border border-(--kk-gold)/15" aria-hidden />
+      <div className="pointer-events-none absolute -right-10 top-24 h-48 w-48 rounded-full border border-(--kk-gold)/10" aria-hidden />
+
+      <div className="relative mx-auto max-w-7xl px-6 pb-10 pt-20 lg:px-10">
+        <div className="mb-16 grid grid-cols-1 gap-14 md:grid-cols-[2fr_1fr_1fr]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+          >
+            <p className="font-serif text-3xl font-light md:text-4xl">Kiminou Knox</p>
+            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.28em] text-(--kk-gold)/75">
+              Author · Athlete · Builder · Voice
             </p>
-          </div>
-          <nav aria-label="Footer">
-            <p className="text-xs uppercase tracking-[0.25em] text-(--kk-paper)/40 mb-5">Explore</p>
+            <p className="mt-6 max-w-sm leading-relaxed text-(--kk-paper)/42">
+              Ten books, basketball, KimYaps, speaking, and live builder work —
+              one body of work, still being written.
+            </p>
+          </motion.div>
+
+          <motion.nav
+            aria-label="Footer"
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.08 }}
+          >
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-(--kk-paper)/30">
+              Explore
+            </p>
             <ul className="grid grid-cols-2 gap-x-6 gap-y-3 md:grid-cols-1">
-              {links.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href}>
-                    <span className="text-(--kk-paper)/70 hover:text-(--kk-paper) transition-colors cursor-pointer text-sm tracking-wide">
-                      {l.label}
-                    </span>
+              {links.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm tracking-wide text-(--kk-paper)/48 transition-colors hover:text-(--kk-gold)"
+                  >
+                    {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </nav>
-          <div>
-            <p className="text-xs uppercase tracking-[0.25em] text-(--kk-paper)/40 mb-5">Follow</p>
+          </motion.nav>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.14 }}
+          >
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-(--kk-paper)/30">
+              Follow
+            </p>
             <ul className="space-y-3">
-              {SITE_SOCIAL_LINKS.slice(0, 7).map((s) => (
-                <li key={s.href}>
+              {SITE_SOCIAL_LINKS.slice(0, 7).map((social) => (
+                <li key={social.href}>
                   <a
-                    href={s.href}
+                    href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-(--kk-paper)/70 hover:text-(--kk-paper) transition-colors text-sm tracking-wide"
+                    className="text-sm tracking-wide text-(--kk-paper)/48 transition-colors hover:text-(--kk-gold)"
                   >
-                    {s.label}
+                    {social.label}
                   </a>
                 </li>
               ))}
             </ul>
-          </div>
+            <Link
+              href="/contact"
+              className="mt-7 inline-flex border border-(--kk-gold)/30 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-(--kk-gold) transition-all hover:border-(--kk-gold)/65 hover:bg-(--kk-gold)/8"
+            >
+              Work with me →
+            </Link>
+          </motion.div>
         </div>
 
-        <div className="flex justify-center border-t border-(--kk-paper)/10 py-8 md:py-10">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex justify-center border-y border-(--kk-paper)/8 py-8 text-(--kk-gold)"
+        >
           <SignatureAnimation className="w-64 max-w-full md:w-80" />
-        </div>
+        </motion.div>
 
-        <div className="border-t border-(--kk-paper)/10 pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <p className="text-xs tracking-[0.2em] uppercase text-(--kk-paper)/40">
-            © 2026 Kiminou Knox. All rights reserved.
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.28 }}
+          className="flex flex-col items-start justify-between gap-4 pt-8 sm:flex-row sm:items-center"
+        >
+          <p className="text-xs text-(--kk-paper)/22">© 2026 Kiminou Knox. All rights reserved.</p>
+          <p className="text-[10px] uppercase tracking-[0.24em] text-(--kk-paper)/20">
+            The professional side
           </p>
-          <p className="text-xs tracking-[0.2em] uppercase text-(--kk-paper)/40">
-            Author · Athlete · Builder
-          </p>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
