@@ -6,7 +6,7 @@ export default function SignatureAnimation({ className = "" }: { className?: str
   const inView = useInView(ref as React.RefObject<Element>, { once: true, margin: "-60px" });
 
   const strokeProps = {
-    stroke: "#f59e0b",
+    stroke: "currentColor",
     strokeWidth: 2.2,
     fill: "none",
     strokeLinecap: "round" as const,
@@ -53,7 +53,7 @@ export default function SignatureAnimation({ className = "" }: { className?: str
       />
       <motion.circle
         cx="48" cy="22" r="2.5"
-        fill="#f59e0b"
+        fill="currentColor"
         initial={{ scale: 0, opacity: 0 }}
         animate={inView ? { scale: 1, opacity: 1 } : {}}
         transition={{ duration: 0.2, delay: 1.25 }}
@@ -78,7 +78,7 @@ export default function SignatureAnimation({ className = "" }: { className?: str
       />
       <motion.circle
         cx="100" cy="22" r="2.5"
-        fill="#f59e0b"
+        fill="currentColor"
         initial={{ scale: 0, opacity: 0 }}
         animate={inView ? { scale: 1, opacity: 1 } : {}}
         transition={{ duration: 0.2, delay: 2.35 }}
@@ -115,7 +115,7 @@ export default function SignatureAnimation({ className = "" }: { className?: str
       <motion.path
         d="M 8,84 C 80,80 200,82 280,78"
         strokeWidth={1.2}
-        stroke="#f59e0b"
+        stroke="currentColor"
         strokeOpacity={0.35}
         fill="none"
         strokeLinecap="round"
@@ -171,7 +171,7 @@ export default function SignatureAnimation({ className = "" }: { className?: str
       <motion.path
         d="M 325,75 C 336,72 340,68 338,62"
         strokeWidth={1.5}
-        stroke="#f59e0b"
+        stroke="currentColor"
         strokeOpacity={0.6}
         fill="none"
         strokeLinecap="round"
