@@ -1,4 +1,5 @@
 // STAGING COPY — kiminou-knox-website rebuild canvas.
+// Staging refresh: 2026-10-02 — redeploy current main snapshot.
 //
 // Rebuild order: hero → /books → /speaking → /press → /sports → /contact
 // → court/craft toggle → business-site polish → red-button pixel world.
