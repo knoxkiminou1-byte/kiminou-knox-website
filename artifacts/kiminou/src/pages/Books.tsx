@@ -197,6 +197,14 @@ export default function Books() {
               <dd className="font-serif text-4xl mt-2">Poetry &amp; Story</dd>
             </div>
           </dl>
+          <div className="mt-8">
+            <Link
+              href="/books/universe"
+              className="inline-flex items-center rounded-full border border-(--kk-ink)/25 px-6 py-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-(--kk-ink) transition-colors hover:border-(--kk-ink)/60 hover:bg-(--kk-ink) hover:text-(--kk-paper)"
+            >
+              Explore the book universe
+            </Link>
+          </div>
         </div>
       </section>
 
