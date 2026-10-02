@@ -7,14 +7,21 @@ const navItems = [
   { href: "/sports", label: "Athletics" },
   { href: "/speaking", label: "Voice" },
   { href: "/work", label: "Work" },
+  { href: "/blog", label: "Journal" },
+  { href: "/now", label: "Now" },
   { href: "/author", label: "Bio" },
   { href: "/press", label: "Press" },
   { href: "/contact", label: "Contact" },
 ];
 
+function isActive(location: string, href: string) {
+  if (href === "/") return location === "/";
+  return location === href || location.startsWith(href + "/");
+}
+
 /**
  * SiteHeader — the business-professional site chrome.
- * Cream paper, ink text, quiet confidence. No FX.
+ * Cream paper, ink text, quiet confidence. No Pixel-world UI.
  */
 export default function SiteHeader() {
   const [location] = useLocation();
@@ -30,15 +37,18 @@ export default function SiteHeader() {
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-7" aria-label="Main navigation">
             {navItems.map((item) => {
-              const active = location === item.href;
+              const active = isActive(location, item.href);
               return (
                 <Link key={item.href} href={item.href}>
                   <span
-                    className={`text-[13px] uppercase tracking-[0.18em] cursor-pointer transition-colors ${
-                      active ? "text-(--kk-ink) font-semibold" : "text-(--kk-ink)/55 hover:text-(--kk-ink)"
-                    }`}
+                    className={
+                      "text-[12px] uppercase tracking-[0.16em] cursor-pointer transition-colors whitespace-nowrap " +
+                      (active
+                        ? "text-(--kk-ink) font-semibold"
+                        : "text-(--kk-ink)/55 hover:text-(--kk-ink)")
+                    }
                   >
                     {item.label}
                   </span>
@@ -48,8 +58,8 @@ export default function SiteHeader() {
           </nav>
 
           <button
-            className="md:hidden p-1 text-(--kk-ink)/70 hover:text-(--kk-ink) transition-colors"
-            onClick={() => setMenuOpen((o) => !o)}
+            className="lg:hidden p-2 -mr-2 text-(--kk-ink)/70 hover:text-(--kk-ink) transition-colors"
+            onClick={() => setMenuOpen((open) => !open)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
           >
@@ -59,19 +69,25 @@ export default function SiteHeader() {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden bg-(--kk-paper) border-t border-(--kk-ink)/10" role="dialog" aria-label="Mobile navigation">
-          <nav className="px-6 py-6 flex flex-col gap-5" aria-label="Mobile">
-            {navItems.map((item) => (
-              <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
-                <span
-                  className={`block text-base uppercase tracking-[0.2em] cursor-pointer ${
-                    location === item.href ? "text-(--kk-ink) font-semibold" : "text-(--kk-ink)/60"
-                  }`}
-                >
-                  {item.label}
-                </span>
-              </Link>
-            ))}
+        <div className="lg:hidden bg-(--kk-paper) border-t border-(--kk-ink)/10" role="dialog" aria-label="Mobile navigation">
+          <nav className="px-6 py-6 grid gap-1 sm:grid-cols-2" aria-label="Mobile">
+            {navItems.map((item) => {
+              const active = isActive(location, item.href);
+              return (
+                <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
+                  <span
+                    className={
+                      "block rounded-sm px-3 py-3 text-sm uppercase tracking-[0.18em] cursor-pointer " +
+                      (active
+                        ? "bg-(--kk-card) text-(--kk-ink) font-semibold"
+                        : "text-(--kk-ink)/60 hover:bg-(--kk-card)/70 hover:text-(--kk-ink)")
+                    }
+                  >
+                    {item.label}
+                  </span>
+                </Link>
+              );
+            })}
           </nav>
         </div>
       )}
