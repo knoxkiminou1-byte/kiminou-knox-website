@@ -89,7 +89,9 @@ function pageSchemas(route) {
 }
 
 function renderHead(route) {
-  const keywords = Array.isArray(route.keywords) ? route.keywords.join(", ") : "";
+  // NOTE (SEO 2026-10-05): the deprecated keywords meta is intentionally NOT
+  // emitted — Google ignores it and it only bloats the head. route.keywords
+  // still ride along in seo-routes.json for tooling; nothing visible changes.
   const canonical = route.url;
   const image = route.image || manifest.site.image;
 
@@ -97,7 +99,6 @@ function renderHead(route) {
     <meta data-seo-static name="description" content="${escapeAttr(route.description)}">
     <meta data-seo-static name="robots" content="noindex, nofollow">
     <meta data-seo-static name="theme-color" content="#090705">
-    ${keywords ? `<meta data-seo-static name="keywords" content="${escapeAttr(keywords)}">` : ""}
     <link data-seo-static rel="canonical" href="${escapeAttr(canonical)}">
     <link data-seo-static rel="alternate" type="application/rss+xml" title="Kiminou Knox Journal RSS" href="${manifest.site.url}/rss.xml">
     <link data-seo-static rel="alternate" type="application/atom+xml" title="Kiminou Knox Journal Atom" href="${manifest.site.url}/feed.xml">
