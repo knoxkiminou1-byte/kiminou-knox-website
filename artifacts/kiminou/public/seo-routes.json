@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-01T00:48:36.189Z",
+  "generatedAt": "2026-10-05T18:30:11.545Z",
   "site": {
     "name": "Kiminou Knox",
     "url": "https://www.kiminouknox.com",
@@ -50,7 +50,7 @@
       ],
       "schemaType": "WebPage",
       "url": "https://www.kiminouknox.com/",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -73,7 +73,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         }
       ]
     },
@@ -96,7 +96,7 @@
       ],
       "schemaType": "AboutPage",
       "url": "https://www.kiminouknox.com/about",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -119,7 +119,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         }
       ]
     },
@@ -142,7 +142,7 @@
       ],
       "schemaType": "CollectionPage",
       "url": "https://www.kiminouknox.com/works",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -165,7 +165,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         }
       ]
     },
@@ -188,7 +188,7 @@
       ],
       "schemaType": "ProfilePage",
       "url": "https://www.kiminouknox.com/author",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -211,7 +211,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         }
       ]
     },
@@ -234,7 +234,7 @@
       ],
       "schemaType": "WebPage",
       "url": "https://www.kiminouknox.com/work",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -257,7 +257,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         }
       ]
     },
@@ -279,7 +279,7 @@
       ],
       "schemaType": "CollectionPage",
       "url": "https://www.kiminouknox.com/legacy",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -302,7 +302,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         }
       ]
     },
@@ -325,7 +325,7 @@
       ],
       "schemaType": "CollectionPage",
       "url": "https://www.kiminouknox.com/books",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -348,7 +348,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         }
       ]
     },
@@ -370,7 +370,7 @@
       ],
       "schemaType": "CollectionPage",
       "url": "https://www.kiminouknox.com/books/universe",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -393,7 +393,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         }
       ]
     },
@@ -417,7 +417,7 @@
       ],
       "schemaType": "WebPage",
       "url": "https://www.kiminouknox.com/speaking",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -440,7 +440,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         }
       ]
     },
@@ -462,7 +462,7 @@
       ],
       "schemaType": "ContactPage",
       "url": "https://www.kiminouknox.com/contact",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -485,7 +485,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         }
       ]
     },
@@ -506,7 +506,7 @@
       ],
       "schemaType": "WebPage",
       "url": "https://www.kiminouknox.com/now",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -529,7 +529,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         }
       ]
     },
@@ -551,7 +551,7 @@
       ],
       "schemaType": "ProfilePage",
       "url": "https://www.kiminouknox.com/press",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -574,7 +574,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         }
       ]
     },
@@ -596,7 +596,7 @@
       ],
       "schemaType": "CollectionPage",
       "url": "https://www.kiminouknox.com/media",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -619,7 +619,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         }
       ]
     },
@@ -641,7 +641,7 @@
       ],
       "schemaType": "ProfilePage",
       "url": "https://www.kiminouknox.com/sports",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -664,7 +664,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         }
       ]
     },
@@ -686,7 +686,7 @@
       ],
       "schemaType": "ProfilePage",
       "url": "https://www.kiminouknox.com/sports/recruiting",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -709,7 +709,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         }
       ]
     },
@@ -731,7 +731,7 @@
       ],
       "schemaType": "ProfilePage",
       "url": "https://www.kiminouknox.com/portfolio",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -754,7 +754,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         }
       ]
     },
@@ -777,7 +777,7 @@
       ],
       "schemaType": "Blog",
       "url": "https://www.kiminouknox.com/blog",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -800,7 +800,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         }
       ]
     },
@@ -822,7 +822,7 @@
       ],
       "schemaType": "CollectionPage",
       "url": "https://www.kiminouknox.com/reading-list",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -845,7 +845,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         }
       ]
     },
@@ -899,7 +899,7 @@
         ]
       },
       "url": "https://www.kiminouknox.com/books/spirit-solomon",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -922,7 +922,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         },
         {
           "@context": "https://schema.org",
@@ -1000,7 +1000,7 @@
         ]
       },
       "url": "https://www.kiminouknox.com/books/our-father",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -1023,7 +1023,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         },
         {
           "@context": "https://schema.org",
@@ -1100,7 +1100,7 @@
         ]
       },
       "url": "https://www.kiminouknox.com/books/poems-black-boy",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -1123,7 +1123,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         },
         {
           "@context": "https://schema.org",
@@ -1197,7 +1197,7 @@
         "sameAs": []
       },
       "url": "https://www.kiminouknox.com/books/black-boy-poems",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -1220,7 +1220,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         },
         {
           "@context": "https://schema.org",
@@ -1294,7 +1294,7 @@
         ]
       },
       "url": "https://www.kiminouknox.com/books/hopeless-romantic",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -1317,7 +1317,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         },
         {
           "@context": "https://schema.org",
@@ -1394,7 +1394,7 @@
         ]
       },
       "url": "https://www.kiminouknox.com/books/boys-raised-in-silence",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -1417,7 +1417,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         },
         {
           "@context": "https://schema.org",
@@ -1493,7 +1493,7 @@
         ]
       },
       "url": "https://www.kiminouknox.com/books/adventures-kiminou-chua",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -1516,7 +1516,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         },
         {
           "@context": "https://schema.org",
@@ -1591,7 +1591,7 @@
         ]
       },
       "url": "https://www.kiminouknox.com/books/world-of-imagination",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -1614,7 +1614,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         },
         {
           "@context": "https://schema.org",
@@ -1690,7 +1690,7 @@
         ]
       },
       "url": "https://www.kiminouknox.com/books/why-did-you-ghost-me",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -1713,7 +1713,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         },
         {
           "@context": "https://schema.org",
@@ -1790,7 +1790,7 @@
         ]
       },
       "url": "https://www.kiminouknox.com/books/7-16-74-an-ode-to-rashida",
-      "lastmod": "2026-10-01",
+      "lastmod": "2026-10-05",
       "schemas": [
         {
           "@context": "https://schema.org",
@@ -1813,7 +1813,7 @@
             "@id": "https://www.kiminouknox.com/#person"
           },
           "inLanguage": "en-US",
-          "dateModified": "2026-10-01"
+          "dateModified": "2026-10-05"
         },
         {
           "@context": "https://schema.org",
