@@ -39,5 +39,5 @@ section SectionGuard, unconditional SEO head + Person JSON-LD.
 | 24 | /press in sitemap.xml + seo-routes.json | PASS | loc /press, priority 0.8, metadata block present. |
 | 25 | Scratch cleanup; diff review; push | PASS | Temp render test removed; diff = Press.tsx rewrite + SEO pipeline date refreshes; pushed to origin/main. |
 
-**Commit:** `<SHA>` — pushed to origin/main 2026-10-05.
+**Commit:** `01361f5` — pushed to origin/main 2026-10-05.
 **Vercel project for morning cron:** `kiminou-knox-website` (prj_dOjmsbAxloptwPRxb4nOm04DmjOj) — production currently at 4f930fd; needs redeploy from new HEAD so /press serves the fixed bundle.
