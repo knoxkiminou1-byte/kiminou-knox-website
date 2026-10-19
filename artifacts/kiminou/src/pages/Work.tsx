@@ -52,7 +52,7 @@ export default function Work() {
         description="Selected builder work by Kiminou Knox: client websites and the AAFC engine — every project live, nothing conceptual."
         path="/work"
       />
-      <main className="bg-(--kk-paper) text-(--kk-ink)">
+      <main id="main-content" className="bg-(--kk-paper) text-(--kk-ink)">
         <PageHero
           eyebrow="Builder"
           title={

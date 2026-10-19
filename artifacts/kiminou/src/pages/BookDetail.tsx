@@ -21,7 +21,7 @@ export default function BookDetail() {
           description="That title isn't on the shelf. Browse all ten books by Kiminou Knox."
           path="/books"
         />
-      <main className="bg-(--kk-paper) text-(--kk-ink) min-h-[70vh]">
+      <main id="main-content" className="bg-(--kk-paper) text-(--kk-ink) min-h-[70vh]">
         <div className="max-w-3xl mx-auto px-6 pt-40 pb-24 text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-(--kk-brass)">
             The Library
@@ -60,7 +60,7 @@ export default function BookDetail() {
         path={`/books/${book.id}`}
         image={book.cover}
       />
-    <main className="bg-(--kk-paper) text-(--kk-ink)">
+    <main id="main-content" className="bg-(--kk-paper) text-(--kk-ink)">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-28 md:pt-36 pb-16 md:pb-24">
         <Link
           href="/books"

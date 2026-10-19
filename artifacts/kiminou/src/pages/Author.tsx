@@ -46,7 +46,7 @@ export default function Author() {
         path="/author"
         image="/photos/kiminou-knox/kiminou-knox-official-author-headshot-2026.jpg"
       />
-      <main className="bg-(--kk-paper) text-(--kk-ink)">
+      <main id="main-content" className="bg-(--kk-paper) text-(--kk-ink)">
         <PageHero
           eyebrow="Bio"
           title={

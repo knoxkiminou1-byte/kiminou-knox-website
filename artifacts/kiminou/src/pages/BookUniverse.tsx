@@ -46,7 +46,7 @@ export default function BookUniverse() {
         path="/books/universe"
         image="/kiminou-knox-book-universe-portal.png"
       />
-      <main className="bg-(--kk-paper) text-(--kk-ink)">
+      <main id="main-content" className="bg-(--kk-paper) text-(--kk-ink)">
         <PageHero
           eyebrow="The Book Universe"
           title={

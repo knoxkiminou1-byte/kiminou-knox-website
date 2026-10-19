@@ -30,7 +30,7 @@ export default function BlogPost() {
           description="That essay is no longer on this shelf. Browse the Kiminou Knox journal."
           path="/blog"
         />
-        <main className="min-h-[70vh] bg-(--kk-paper) text-(--kk-ink)">
+        <main id="main-content" className="min-h-[70vh] bg-(--kk-paper) text-(--kk-ink)">
           <div className="mx-auto max-w-3xl px-6 pb-24 pt-40 text-center">
             <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-(--kk-brass)">Journal</p>
             <h1 className="mt-5 font-serif text-4xl md:text-5xl">That page moved.</h1>
@@ -73,7 +73,7 @@ export default function BlogPost() {
         path={path}
         image={post.featuredImage || "/og-image.png"}
       />
-      <main className="bg-(--kk-paper) text-(--kk-ink)">
+      <main id="main-content" className="bg-(--kk-paper) text-(--kk-ink)">
         <article>
           <header className="mx-auto max-w-4xl px-6 pb-12 pt-32 md:pb-16 md:pt-44 lg:px-10">
             <Link
