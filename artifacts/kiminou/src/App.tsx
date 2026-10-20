@@ -45,8 +45,10 @@ function Home() {
         path="/"
         image="/photos/kiminou-knox/kiminou-knox-official-author-headshot-2026.jpg"
       />
-      <ParticleHero />
-      <HomeSections />
+      <main id="main-content">
+        <ParticleHero />
+        <HomeSections />
+      </main>
     </>
   );
 }
@@ -59,7 +61,7 @@ function NotFound() {
         description="That page isn't part of the story. Start back at the beginning with Kiminou Knox — author, athlete, speaker."
         path="/404"
       />
-    <main className="bg-(--kk-paper) text-(--kk-ink) min-h-[70vh]">
+    <main id="main-content" className="bg-(--kk-paper) text-(--kk-ink) min-h-[70vh]">
       <div className="max-w-3xl mx-auto px-6 pt-40 pb-24 text-center">
         <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-(--kk-brass)">
           404
@@ -83,6 +85,12 @@ function NotFound() {
 export default function App() {
   return (
     <div className="professional-shell min-h-screen bg-(--kk-paper) text-(--kk-ink) antialiased">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:rounded-full focus:bg-(--kk-ink) focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-(--kk-paper)"
+      >
+        Skip to content
+      </a>
       <ProfessionalAtmosphere />
       <ScrollToTop />
       <SiteHeader />

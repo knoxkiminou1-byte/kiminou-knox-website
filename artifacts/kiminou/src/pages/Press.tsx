@@ -150,7 +150,7 @@ export default function Press() {
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
-      <main className="bg-(--kk-paper) text-(--kk-ink)">
+      <main id="main-content" className="bg-(--kk-paper) text-(--kk-ink)">
         <PageHero
           eyebrow="Press & Recognition"
           title={

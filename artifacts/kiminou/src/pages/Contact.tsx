@@ -67,7 +67,7 @@ export default function Contact() {
         path="/contact"
         image="/photos/kiminou-knox/kiminou-knox-official-author-headshot-2026.jpg"
       />
-      <main className="bg-(--kk-paper) text-(--kk-ink)">
+      <main id="main-content" className="bg-(--kk-paper) text-(--kk-ink)">
       <PageHero
         eyebrow="Contact"
         title={

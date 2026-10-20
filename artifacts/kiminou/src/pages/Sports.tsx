@@ -53,7 +53,7 @@ export default function Sports() {
         path="/sports"
         image="/photos/kiminou-knox/kiminou-knox-basketball-jump-shot.jpg"
       />
-      <main className="bg-(--kk-paper) text-(--kk-ink)">
+      <main id="main-content" className="bg-(--kk-paper) text-(--kk-ink)">
       <PageHero
         eyebrow="Athletics"
         title={

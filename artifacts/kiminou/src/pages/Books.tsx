@@ -164,7 +164,7 @@ export default function Books() {
         path="/books"
         image="/kiminou-knox-book-universe-portal.png"
       />
-      <main className="bg-(--kk-paper) text-(--kk-ink)">
+      <main id="main-content" className="bg-(--kk-paper) text-(--kk-ink)">
       {/* ——— Page hero ——— */}
       <section className="pt-32 md:pt-44 pb-14 md:pb-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
